@@ -7,5 +7,26 @@ item-details-page {
     padding-top: 5%;
   }
 
-}
+  .footer-bar-custom .item-left,
+  .footer-bar-custom .item-center,
+  .footer-bar-custom .item-right {
+    position: absolute;
+    width: 30px
+  }
 
+  .footer-bar-custom .item-left { left: 10px }
+
+  .footer-bar-custom .item-center {
+    width: 40%;
+    left: 54%;
+    -webkit-transform: translate(-50%, -30%);
+    transform: translate(-50%, -30%);
+  }
+
+  .footer-bar-custom .item-right { right: 10px }
+
+  button.footer-bar-item {
+    -webkit-transform: translateY(-40%);
+    transform: translateY(-40%);
+  }
+}

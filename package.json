@@ -1,7 +1,7 @@
 {
-  "name": "ionic-hello-world",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "name": "professor-tutor",
+  "author": "Rui Baltazar",
+  "homepage": "http://balazar.net",
   "private": true,
   "scripts": {
     "ionic:build": "ionic-app-scripts build",
@@ -21,6 +21,7 @@
     "ionic-angular": "2.0.0-rc.3",
     "ionic-native": "2.2.3",
     "ionicons": "3.0.0",
+    "momentjs": "latest",
     "rxjs": "5.0.0-beta.12",
     "zone.js": "0.6.26"
   },
@@ -44,5 +45,5 @@
       "locator": "ios"
     }
   ],
-  "description": "professor-tutor: An Ionic project"
+  "description": "professor-tutor: O ajudante do aluno e do professor"
 }
