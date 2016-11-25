@@ -3,16 +3,25 @@
     <button menuToggle *ngIf="!selectedItem">
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Item Details</ion-title>
+    <ion-title *ngIf="selectedItem">{{selectedItem.title}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
- <div *ngIf="selectedItem" class="selection">
-    <b>{{selectedItem.title}}</b>
-    <ion-icon name="{{selectedItem.icon}}"></ion-icon>
-    <div>
-      You navigated here from <b>{{selectedItem.title}}</b>
-    </div>
-  </div>
+  <ion-list>
+    <button ion-item *ngFor="let item of weekDays" (click)="itemTapped($event, item)">
+      {{item}}
+    </button>
+  </ion-list>
+
+  <ion-fab right bottom>
+    <button ion-fab color="primary" (click)="addNewHour($event)"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>10|11|12|13</ion-title>
+  </ion-toolbar>
+</ion-footer>
