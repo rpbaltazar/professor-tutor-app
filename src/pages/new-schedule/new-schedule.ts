@@ -8,6 +8,18 @@ import { NavController, NavParams } from "ionic-angular";
 
 export class NewSchedulePage {
 
+  selectedStudent: any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.selectedStudent = navParams.get('selectedStudent');
+  }
+
+  saveEvent(event){
+    // TODO:
+    // validate form
+    // send request with data
+    // feedback success
+    console.log(arguments);
+    this.navCtrl.pop();
   }
 }

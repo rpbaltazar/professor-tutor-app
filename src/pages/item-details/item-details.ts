@@ -10,12 +10,12 @@ import { NewSchedulePage } from '../new-schedule/new-schedule';
   templateUrl: 'item-details.html'
 })
 export class ItemDetailsPage {
-  selectedItem: any;
+  selectedStudent: any;
   weekDays: string[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     // If we navigated to this page, we will have an item available as a nav param
-    this.selectedItem = navParams.get('item');
+    this.selectedStudent = navParams.get('item');
     this.weekDays = ['Segunda', 'Terca', 'Quarta', 'Quinta', 'Sexta', 'Sabado', 'Domingo'];
   }
 
@@ -24,6 +24,8 @@ export class ItemDetailsPage {
   }
 
   addNewHour(event) {
-    this.navCtrl.push(NewSchedulePage);
+    this.navCtrl.push(NewSchedulePage, {
+      selectedStudent: this.selectedStudent
+    });
   }
 }
