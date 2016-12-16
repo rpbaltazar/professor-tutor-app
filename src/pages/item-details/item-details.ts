@@ -11,16 +11,38 @@ import { NewSchedulePage } from '../new-schedule/new-schedule';
 })
 export class ItemDetailsPage {
   selectedStudent: any;
-  weekDays: string[];
+  weeklySchedule: Array<{title: string, schedule: string[]}>;
+  shownWeekday: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedStudent = navParams.get('item');
-    this.weekDays = ['Segunda', 'Terca', 'Quarta', 'Quinta', 'Sexta', 'Sabado', 'Domingo'];
+    this.weeklySchedule = [
+      { title: 'Segunda', schedule: ['Matematica 10-11'] },
+      { title: 'Terca',   schedule: [] },
+      { title: 'Quarta',  schedule: [] },
+      { title: 'Quinta',  schedule: [] },
+      { title: 'Sexta',   schedule: [] },
+      { title: 'Sabado',  schedule: [] },
+      { title: 'Domingo', schedule: [] }
+    ];
   }
 
   itemTapped(event, item) {
     console.log(arguments);
+  }
+
+  isWeekdayShown(weekday) {
+    return this.shownWeekday == weekday;
+  }
+
+  toggleWeekday(weekday) {
+    if (this.isWeekdayShown(weekday)) {
+      this.shownWeekday = null;
+    }
+    else {
+      this.shownWeekday = weekday;
+    }
   }
 
   addNewHour(event) {

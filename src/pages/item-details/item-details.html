@@ -9,9 +9,17 @@
 
 <ion-content>
   <ion-list>
-    <button ion-item *ngFor="let item of weekDays" (click)="itemTapped($event, item)">
-      {{item}}
-    </button>
+    <div *ngFor="let weekday of weeklySchedule">
+      <ion-item (click)="toggleWeekday(weekday)">
+	<ion-icon name="add"></ion-icon>
+	&nbsp; {{ weekday.title }}
+      </ion-item>
+      <div *ngIf="isWeekdayShown(weekday)">
+	<ion-item *ngFor="let scheduledHour of weekday.schedule">
+	  {{ scheduledHour }}
+	</ion-item>
+      </div>
+    </div>
   </ion-list>
 
   <ion-fab right bottom>

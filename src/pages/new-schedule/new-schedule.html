@@ -11,15 +11,21 @@
   <ion-list>
     <ion-item>
       <ion-label stacked>Hora de Comeco</ion-label>
-      <ion-input type="datetime-local"></ion-input>
+      <ion-datetime displayFormat="DD-MMM HH:mm"
+		    [(ngModel)]="startDate"
+		    min="{{weekBeginning}}">
+      </ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label stacked>Hora de Fim</ion-label>
-      <ion-input type="datetime-local"></ion-input>
+      <ion-datetime displayFormat="DD-MMM HH:mm"
+		    [(ngModel)]="endDate"
+		    min="{{startDate}}">
+      </ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label stacked>Tarefa</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="task"></ion-input>
     </ion-item>
   </ion-list>
 
