@@ -50,4 +50,23 @@ export class ItemDetailsPage {
       selectedStudent: this.selectedStudent
     });
   }
+
+  previousWeek(event) {
+    // Calculate beginning and end of previous week
+    // this._updatePage(currentWeek);
+  }
+
+  nextWeek(event) {
+    // Calculate beginning and end of next week
+    // this._updatePage(currentWeek);
+  }
+
+  _updatePage(currentWeek) {
+    this._updateBottomNavBar(currentWeek);
+    // Fetch user data for currentweek
+  }
+
+  _updateBottomNavBar(){
+
+  }
 }
