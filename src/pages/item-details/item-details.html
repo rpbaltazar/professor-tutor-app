@@ -7,7 +7,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content >
   <ion-list>
     <div *ngFor="let weekday of weeklySchedule">
       <ion-item (click)="toggleWeekday(weekday)">
@@ -29,11 +29,11 @@
   </ion-fab>
 
   <ion-fab left middle>
-    <button ion-fab color="primary" (click)="previousWeek($event)"><ion-icon name="add"></ion-icon></button>
+    <button ion-fab (click)="previousWeek($event)"><ion-icon name="arrow-back"></ion-icon></button>
   </ion-fab>
 
   <ion-fab right middle>
-    <button ion-fab color="primary" (click)="nextWeek($event)"><ion-icon name="add"></ion-icon></button>
+    <button ion-fab (click)="nextWeek($event)"><ion-icon name="arrow-forward"></ion-icon></button>
   </ion-fab>
 
 
