@@ -32,6 +32,10 @@ export class ItemDetailsPage {
     console.log(arguments);
   }
 
+  itemDelete(item) {
+    console.log(arguments);
+  }
+
   isWeekdayShown(weekday) {
     return this.shownWeekday == weekday;
   }
@@ -66,7 +70,7 @@ export class ItemDetailsPage {
     // Fetch user data for currentweek
   }
 
-  _updateBottomNavBar(){
+  _updateBottomNavBar(currentWeek){
 
   }
 }
