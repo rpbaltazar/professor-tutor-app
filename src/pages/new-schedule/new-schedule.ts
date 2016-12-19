@@ -32,7 +32,7 @@ export class NewSchedulePage {
   }
 
   _newScheduleBeginning() {
-    let today = new Date();
+    //let today = new Date();
     //parse date into right format
     return "2016-12-11";
     //return today.toISOString();

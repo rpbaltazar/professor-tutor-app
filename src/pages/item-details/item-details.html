@@ -25,22 +25,26 @@
   </ion-list>
 
   <ion-fab right bottom>
-    <button ion-fab color="primary" (click)="addNewHour($event)"><ion-icon name="add"></ion-icon></button>
+    <button ion-fab color="primary" (click)="addNewHour($event)">
+      <ion-icon name="add"></ion-icon>
+    </button>
   </ion-fab>
-
-  <ion-fab left middle>
-    <button ion-fab (click)="previousWeek($event)"><ion-icon name="arrow-back"></ion-icon></button>
-  </ion-fab>
-
-  <ion-fab right middle>
-    <button ion-fab (click)="nextWeek($event)"><ion-icon name="arrow-forward"></ion-icon></button>
-  </ion-fab>
-
-
 </ion-content>
 
-<ion-footer>
+<ion-footer class="footer-bar-custom">
   <ion-toolbar>
-    <ion-title>10|11|12|13</ion-title>
+    <ion-buttons>
+      <button ion-button icon-only small class="footer-bar-item item-left" (click)="previousWeek($event)">
+	<ion-icon name="arrow-back"></ion-icon>
+      </button>
+
+      <button ion-button icon-only small class="footer-bar-item item-right" (click)="nextWeek($event)">
+	<ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <div class="footer-bar-item item-center">
+      09 | 10 | 11 | 12 | 13
+    </div>
   </ion-toolbar>
 </ion-footer>
