@@ -13,10 +13,21 @@ export class ItemDetailsPage {
   selectedStudent: any;
   weeklySchedule: Array<{title: string, schedule: string[]}>;
   shownWeekday: any;
+  weekString: string;
+  beginningOfWeek: date;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedStudent = navParams.get('item');
+    this.load()
+  }
+
+  load(){
+    this._loadStudentWorkload();
+    this._setWeekString();
+  }
+
+  _loadStudentWorkload() {
     this.weeklySchedule = [
       { title: 'Segunda', schedule: ['Matematica 10-11'] },
       { title: 'Terca',   schedule: [] },
@@ -26,6 +37,15 @@ export class ItemDetailsPage {
       { title: 'Sabado',  schedule: [] },
       { title: 'Domingo', schedule: [] }
     ];
+  }
+
+  _setWeekString() {
+    let today = new Date();
+    let dateToSet = today.getDate() - today.getDay();
+    let beginningOfWeek = new Date(today.setDate(dateToSet));
+    dateToSet = dateToSet + 6;
+    let endOfWeek = new Date(today.setDate(dateToSet));
+    this.weekString = beginningOfWeek.toUTCString() + " -> " + endOfWeek.toUTCString()
   }
 
   itemTapped(event, item) {
