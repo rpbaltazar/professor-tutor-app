@@ -5,6 +5,7 @@ import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
 import { NewSchedulePage } from '../pages/new-schedule/new-schedule';
 
+
 @NgModule({
   declarations: [
     MyApp,

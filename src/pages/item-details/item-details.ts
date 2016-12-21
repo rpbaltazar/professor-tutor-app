@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-
 import { NavController, NavParams } from 'ionic-angular';
-
 import { NewSchedulePage } from '../new-schedule/new-schedule';
-
+import * as moment from 'moment/moment';
 
 @Component({
   selector: 'item-details-page',
@@ -14,7 +12,8 @@ export class ItemDetailsPage {
   weeklySchedule: Array<{title: string, schedule: string[]}>;
   shownWeekday: any;
   weekString: string;
-  beginningOfWeek: date;
+  beginningOfWeek: Date;
+  endOfWeek: Date;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     // If we navigated to this page, we will have an item available as a nav param
@@ -40,12 +39,10 @@ export class ItemDetailsPage {
   }
 
   _setWeekString() {
-    let today = new Date();
-    let dateToSet = today.getDate() - today.getDay();
-    let beginningOfWeek = new Date(today.setDate(dateToSet));
-    dateToSet = dateToSet + 6;
-    let endOfWeek = new Date(today.setDate(dateToSet));
-    this.weekString = beginningOfWeek.toUTCString() + " -> " + endOfWeek.toUTCString()
+    let today = moment();
+    let beginningOfWeek = today.clone().startOf("isoWeek");
+    let endOfWeek = today.clone().endOf("isoWeek");
+    this.weekString = beginningOfWeek.format("DD/MMM") + " - " + endOfWeek.format("DD/MMM");
   }
 
   itemTapped(event, item) {

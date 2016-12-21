@@ -21,9 +21,9 @@
     "ionic-angular": "2.0.0-rc.3",
     "ionic-native": "2.2.3",
     "ionicons": "3.0.0",
+    "momentjs": "latest",
     "rxjs": "5.0.0-beta.12",
-    "zone.js": "0.6.26",
-    "momentjs": "latest"
+    "zone.js": "0.6.26"
   },
   "devDependencies": {
     "@ionic/app-scripts": "0.0.45",
@@ -45,5 +45,5 @@
       "locator": "ios"
     }
   ],
-  "description": "professor-tutor: An Ionic project"
+  "description": "professor-tutor: O ajudante do aluno e do professor"
 }
