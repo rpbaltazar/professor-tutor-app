@@ -12,8 +12,8 @@ export class ItemDetailsPage {
   weeklySchedule: Array<{title: string, schedule: string[]}>;
   shownWeekday: any;
   weekString: string;
-  beginningOfWeek: Date;
-  endOfWeek: Date;
+  beginningOfWeek: any;
+  endOfWeek: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     // If we navigated to this page, we will have an item available as a nav param
@@ -40,9 +40,9 @@ export class ItemDetailsPage {
 
   _setWeekString() {
     let today = moment();
-    let beginningOfWeek = today.clone().startOf("isoWeek");
-    let endOfWeek = today.clone().endOf("isoWeek");
-    this.weekString = beginningOfWeek.format("DD/MMM") + " - " + endOfWeek.format("DD/MMM");
+    this.beginningOfWeek = today.clone().startOf("isoWeek");
+    this.endOfWeek = today.clone().endOf("isoWeek");
+    this.weekString = this.beginningOfWeek.format("DD/MMM") + " - " + this.endOfWeek.format("DD/MMM");
   }
 
   itemTapped(event, item) {
@@ -73,12 +73,16 @@ export class ItemDetailsPage {
   }
 
   previousWeek(event) {
-    // Calculate beginning and end of previous week
+    this.beginningOfWeek.subtract(1, "week");
+    this.endOfWeek.subtract(1, "week");
+    this.weekString = this.beginningOfWeek.format("DD/MMM") + " - " + this.endOfWeek.format("DD/MMM");
     // this._updatePage(currentWeek);
   }
 
   nextWeek(event) {
-    // Calculate beginning and end of next week
+    this.beginningOfWeek.add(1, "week");
+    this.endOfWeek.add(1, "week");
+    this.weekString = this.beginningOfWeek.format("DD/MMM") + " - " + this.endOfWeek.format("DD/MMM");
     // this._updatePage(currentWeek);
   }
 
