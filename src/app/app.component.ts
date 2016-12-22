@@ -1,9 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-
 import { Platform, MenuController, Nav } from 'ionic-angular';
-
 import { StatusBar, Splashscreen } from 'ionic-native';
-
 import { ListPage } from '../pages/list/list';
 
 
@@ -17,10 +14,7 @@ export class MyApp {
   rootPage: any = ListPage;
   pages: Array<{title: string, component: any}>;
 
-  constructor(
-    public platform: Platform,
-    public menu: MenuController
-  ) {
+  constructor(public platform: Platform, public menu: MenuController) {
     this.initializeApp();
 
     // set our app's pages

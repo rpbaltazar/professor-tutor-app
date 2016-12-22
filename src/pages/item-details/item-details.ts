@@ -7,6 +7,7 @@ import * as moment from 'moment/moment';
   selector: 'item-details-page',
   templateUrl: 'item-details.html'
 })
+
 export class ItemDetailsPage {
   selectedStudent: any;
   weeklySchedule: Array<{title: string, schedule: string[]}>;

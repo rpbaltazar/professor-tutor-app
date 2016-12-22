@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { NavController, NavParams } from "ionic-angular";
+import { ToastController, NavController, NavParams } from "ionic-angular";
 
 @Component({
   selector: "new-schedule-page",
@@ -14,8 +14,10 @@ export class NewSchedulePage {
   startDate: string;
   endDate: string;
   task: string;
+  toastCtrl: ToastController;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.toastCtrl = new ToastController(this.navCtrl["_app"]);
     this.selectedStudent = navParams.get('selectedStudent');
     this.weekBeginning = this._newScheduleBeginning();
     // TODO:
@@ -26,9 +28,21 @@ export class NewSchedulePage {
     // TODO:
     // validate form
     // send request with data
-    // feedback success
-    console.log(arguments);
-    this.navCtrl.pop();
+    this.presentToast();
+  }
+
+  presentToast() {
+    let toast = this.toastCtrl.create({
+      message: 'Registado com sucesso',
+      duration: 2000,
+      position: 'bottom'
+    });
+
+    toast.onDidDismiss(() => {
+      this.navCtrl.pop();
+    });
+
+    toast.present();
   }
 
   _newScheduleBeginning() {
