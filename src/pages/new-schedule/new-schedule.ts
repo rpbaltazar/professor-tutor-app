@@ -14,10 +14,8 @@ export class NewSchedulePage {
   startDate: string;
   endDate: string;
   task: string;
-  toastCtrl: ToastController;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.toastCtrl = new ToastController(this.navCtrl["_app"]);
+  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController) {
     this.selectedStudent = navParams.get('selectedStudent');
     this.weekBeginning = this._newScheduleBeginning();
     // TODO:
