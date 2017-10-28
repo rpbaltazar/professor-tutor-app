@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
-
 import { NavController, NavParams } from 'ionic-angular';
-
 import { ItemDetailsPage } from '../item-details/item-details';
-
 
 @Component({
   selector: 'list-page',
@@ -20,10 +17,10 @@ export class ListPage {
     this.loadStudents();
     this.items = [];
     for(let i = 0; i < this.students.length; i++) {
-      this.items.push({
-	title: this.students[i],
-	note: '12H',
-	icon: 'person'
+        this.items.push({
+          title: this.students[i],
+          note: '12H',
+          icon: 'person'
       });
     }
   }

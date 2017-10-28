@@ -6,6 +6,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { MyApp } from './app.component';
+import { LoginPage } from '../pages/login/login';
+
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
 import { NewSchedulePage } from '../pages/new-schedule/new-schedule';
@@ -14,6 +16,7 @@ import { NewSchedulePage } from '../pages/new-schedule/new-schedule';
 @NgModule({
   declarations: [
     MyApp,
+    LoginPage,
     ItemDetailsPage,
     ListPage,
     NewSchedulePage
@@ -26,6 +29,7 @@ import { NewSchedulePage } from '../pages/new-schedule/new-schedule';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    LoginPage,
     ItemDetailsPage,
     ListPage,
     NewSchedulePage
