@@ -1,3 +1,4 @@
+import { LoginService } from '../providers/login_service';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { NgModule, ErrorHandler } from '@angular/core';
@@ -37,6 +38,7 @@ import { NewSchedulePage } from '../pages/new-schedule/new-schedule';
   providers: [
     StatusBar,
     SplashScreen,
+    LoginService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

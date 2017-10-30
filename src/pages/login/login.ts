@@ -1,3 +1,4 @@
+import { LoginService } from '../../providers/login_service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Component } from '@angular/core';
 import { LoadingController,
@@ -14,8 +15,9 @@ export class LoginPage {
 
   constructor(public navCtrl: NavController,
     public loadingCtrl: LoadingController,
+    private loginService: LoginService
    ) {
-    this.loginData = new FormGroup({
+    this.loginData = new FormGroup({ // TODO: Add validation
       email: new FormControl(),
       password: new FormControl()
    });
@@ -25,6 +27,10 @@ export class LoginPage {
   login() {
     var emailAddress = this.loginData.get("email").value
     var password = this.loginData.get("password").value
-    console.log("logging in using " + emailAddress + " and " + password);
+    this.loginService.signIn(emailAddress, password).then(data => {
+      console.log(data);
+    }).catch( () => {
+      console.log("Error with login") // TODO: Show notification
+    });
   }
 }
