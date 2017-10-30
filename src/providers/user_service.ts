@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers, RequestOptionsArgs } from '@angular/http';
+import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/map';
 import { Env } from '../config/env';
 
 @Injectable()
 export class UserService {
-  data: any;
+  user_data: any;
 
-  constructor(public http: Http) {
+  constructor(public http: Http, private storage: Storage) {
     this.http = http;
   }
 
@@ -23,8 +24,10 @@ export class UserService {
       this.http.post(`${mobileApi}/users/sign_in`, params)
         .subscribe(
           data => {
-            this.data = data.json();
-            resolve(this.data);
+            this.user_data = data.json();
+            this.storage.set("user_type", this.user_data["user_type"]);
+            this.storage.set("api_key", this.user_data["api_key"]);
+            resolve(this.user_data);
           },
           error => {
             reject(error);
@@ -46,14 +49,31 @@ export class UserService {
       this.http.post(`${mobileApi}/users`, params)
         .subscribe(
           data => {
-            this.data = data.json();
-            resolve(this.data);
+            resolve(data);
           },
           error => {
             reject(error);
           });
     });
+  }
 
+  getStudents() {
+    return new Promise( (resolve, reject) => {
+      let mobileApi = Env.getEnvValue('MOBILE_API');
+
+      let headers = new Headers();
+      headers.append('Authorization', `Token ${this.user_data["api_key"]}`);
+      let opts:RequestOptionsArgs = { headers: headers };
+
+      this.http.get(`${mobileApi}v1/users`, opts)
+        .subscribe(
+          data => {
+            resolve(data);
+          },
+          error => {
+            reject(error);
+          });
+    });
   }
 
 }

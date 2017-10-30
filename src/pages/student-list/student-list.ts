@@ -1,3 +1,4 @@
+import { UserService } from '../../providers/user_service';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ItemDetailsPage } from '../item-details/item-details';
@@ -11,18 +12,13 @@ export class StudentListPage {
   items: Array<{title: string, note: string, icon: string}>;
   students: string[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.students = [];
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              public userService: UserService) {
 
-    this.loadStudents();
-    this.items = [];
-    for(let i = 0; i < this.students.length; i++) {
-        this.items.push({
-          title: this.students[i],
-          note: '12H',
-          icon: 'person'
+      userService.getStudents().then((students) => {
+        debugger
       });
-    }
   }
 
   itemTapped(event, item) {

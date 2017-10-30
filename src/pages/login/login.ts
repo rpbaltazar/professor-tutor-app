@@ -1,3 +1,4 @@
+import { StudentListPage } from '../student-list/student-list';
 import { RegisterPage } from '../register/register';
 import { UserService } from '../../providers/user_service';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -31,7 +32,11 @@ export class LoginPage {
     var emailAddress = this.loginData.get("email").value
     var password = this.loginData.get("password").value
     this.userService.signIn(emailAddress, password).then(data => {
-      this.navCtrl.push()
+      if(data["user_type"] == "Professor") {
+        this.navCtrl.push(StudentListPage);
+      } else {
+        alert("Implement Student!");
+      }
     }).catch( () => {
       const alert = this.alertCtrl.create({
         title: 'Error',
