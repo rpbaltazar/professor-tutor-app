@@ -1,3 +1,4 @@
+import { RegisterPage } from '../pages/register/register';
 import { LoginService } from '../providers/login_service';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
@@ -18,6 +19,7 @@ import { NewSchedulePage } from '../pages/new-schedule/new-schedule';
   declarations: [
     MyApp,
     LoginPage,
+    RegisterPage,
     ItemDetailsPage,
     ListPage,
     NewSchedulePage
@@ -31,6 +33,7 @@ import { NewSchedulePage } from '../pages/new-schedule/new-schedule';
   entryComponents: [
     MyApp,
     LoginPage,
+    RegisterPage,
     ItemDetailsPage,
     ListPage,
     NewSchedulePage

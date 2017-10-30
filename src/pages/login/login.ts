@@ -1,3 +1,4 @@
+import { RegisterPage } from '../register/register';
 import { LoginService } from '../../providers/login_service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Component } from '@angular/core';
@@ -22,6 +23,10 @@ export class LoginPage {
       password: new FormControl()
    });
 
+  }
+
+  register() {
+    this.navCtrl.push(RegisterPage);
   }
 
   login() {

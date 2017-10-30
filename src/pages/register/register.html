@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Register
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding id="register-page">
+    <form id="registration-form" [formGroup]="registrationData">
+        <ion-item>
+            <ion-input formControlName="first_name" type="text" placeholder="First Name"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input formControlName="last_name" type="text" placeholder="Last Name"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input formControlName="email" type="email" placeholder="Email Address"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input formControlName="password" type="password" placeholder="Password"></ion-input>
+        </ion-item>
+    </form>
+    <div class="spacer" id="page-spacer"></div>
+    <button id="register-button" (click)="register()" ion-button color="default" block>
+        Register
+    </button>
+</ion-content>
