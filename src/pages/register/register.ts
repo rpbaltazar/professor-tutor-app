@@ -26,7 +26,16 @@ export class RegisterPage {
   }
 
   register() {
-    console.log("Register!")
+    var params = {
+      first_name: this.registrationData.get("first_name").value,
+      last_name: this.registrationData.get("last_name").value,
+      email: this.registrationData.get("email").value,
+      password: this.registrationData.get("password").value,
+    }
+
+    this.userService.createUser(params).then(() => {
+      console.log("Correct!")
+    });
   }
 
 }

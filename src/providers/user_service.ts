@@ -32,10 +32,12 @@ export class UserService {
     });
   }
 
-  createUser(email: string, password: string) {
+  createUser(data) {
     let params = {
-      email: email,
-      password: password
+      first_name: data["first_name"],
+      last_name: data["last_name"],
+      email: data["email"],
+      password: data["password"]
     }
 
     return new Promise( (resolve, reject) => {
