@@ -1,5 +1,5 @@
 import { RegisterPage } from '../register/register';
-import { LoginService } from '../../providers/login_service';
+import { UserService } from '../../providers/user_service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Component } from '@angular/core';
 import { LoadingController,
@@ -16,7 +16,7 @@ export class LoginPage {
 
   constructor(public navCtrl: NavController,
     public loadingCtrl: LoadingController,
-    private loginService: LoginService
+    private userService: UserService
    ) {
     this.loginData = new FormGroup({ // TODO: Add validation
       email: new FormControl(),
@@ -32,7 +32,7 @@ export class LoginPage {
   login() {
     var emailAddress = this.loginData.get("email").value
     var password = this.loginData.get("password").value
-    this.loginService.signIn(emailAddress, password).then(data => {
+    this.userService.signIn(emailAddress, password).then(data => {
       console.log(data);
     }).catch( () => {
       console.log("Error with login") // TODO: Show notification

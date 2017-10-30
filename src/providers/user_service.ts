@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 import { Env } from '../config/env';
 
 @Injectable()
-export class LoginService {
+export class UserService {
   data: any;
 
   constructor(public http: Http) {
