@@ -55,6 +55,8 @@ export class RegisterPage {
         });
 
         alert.present();
+      }).catch((data) => {
+        console.log(data);
       });
   }
 

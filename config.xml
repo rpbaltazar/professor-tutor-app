@@ -48,4 +48,5 @@
     </feature>
     <icon src="resources/ios/icon/icon-small@3x.png" />
     <engine name="android" spec="~6.3.0" />
+    <plugin name="cordova-sqlite-storage" spec="^2.0.4" />
 </widget>

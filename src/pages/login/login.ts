@@ -2,10 +2,7 @@ import { RegisterPage } from '../register/register';
 import { UserService } from '../../providers/user_service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Component } from '@angular/core';
-import { LoadingController,
-         NavController,
-         NavParams 
-       } from 'ionic-angular';
+import { AlertController, LoadingController, NavController, NavParams } from 'ionic-angular';
 
 @Component({
   selector: 'login-page',
@@ -16,6 +13,7 @@ export class LoginPage {
 
   constructor(public navCtrl: NavController,
     public loadingCtrl: LoadingController,
+    public alertCtrl: AlertController,
     private userService: UserService
    ) {
     this.loginData = new FormGroup({ // TODO: Add validation
@@ -35,7 +33,12 @@ export class LoginPage {
     this.userService.signIn(emailAddress, password).then(data => {
       console.log(data);
     }).catch( () => {
-      console.log("Error with login") // TODO: Show notification
+      const alert = this.alertCtrl.create({
+        title: 'Error',
+        subTitle: 'Incorrect username or password!',
+        buttons: ['Ok']
+      });
+      alert.present();
     });
   }
 }
