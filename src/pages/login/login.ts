@@ -31,7 +31,7 @@ export class LoginPage {
     var emailAddress = this.loginData.get("email").value
     var password = this.loginData.get("password").value
     this.userService.signIn(emailAddress, password).then(data => {
-      console.log(data);
+      this.navCtrl.push()
     }).catch( () => {
       const alert = this.alertCtrl.create({
         title: 'Error',

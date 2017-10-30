@@ -11,7 +11,7 @@ import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 
 import { ItemDetailsPage } from '../pages/item-details/item-details';
-import { ListPage } from '../pages/list/list';
+import { StudentListPage } from '../pages/student-list/student-list';
 import { NewSchedulePage } from '../pages/new-schedule/new-schedule';
 
 
@@ -21,7 +21,7 @@ import { NewSchedulePage } from '../pages/new-schedule/new-schedule';
     LoginPage,
     RegisterPage,
     ItemDetailsPage,
-    ListPage,
+    StudentListPage,
     NewSchedulePage
   ],
   imports: [
@@ -35,7 +35,7 @@ import { NewSchedulePage } from '../pages/new-schedule/new-schedule';
     LoginPage,
     RegisterPage,
     ItemDetailsPage,
-    ListPage,
+    StudentListPage,
     NewSchedulePage
   ],
   providers: [

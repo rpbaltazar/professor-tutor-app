@@ -3,10 +3,10 @@ import { NavController, NavParams } from 'ionic-angular';
 import { ItemDetailsPage } from '../item-details/item-details';
 
 @Component({
-  selector: 'list-page',
-  templateUrl: 'list.html'
+  selector: 'student-list-page',
+  templateUrl: 'student-list.html'
 })
-export class ListPage {
+export class StudentListPage {
   selectedItem: any;
   items: Array<{title: string, note: string, icon: string}>;
   students: string[];
