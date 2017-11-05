@@ -18,8 +18,8 @@ export class LoginPage {
     private userService: UserService
    ) {
     this.loginData = new FormGroup({ // TODO: Add validation
-      email: new FormControl(),
-      password: new FormControl()
+      email: new FormControl("jude@airdrilling.com"),
+      password: new FormControl("12345678")
    });
 
   }

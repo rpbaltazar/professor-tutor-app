@@ -1,3 +1,7 @@
+import * as _ from 'lodash';
+
+import { Student } from '../models/student';
+import { Students } from '../models/students';
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptionsArgs } from '@angular/http';
 import { Storage } from '@ionic/storage';
@@ -57,7 +61,7 @@ export class UserService {
     });
   }
 
-  getStudents() {
+  getStudents(): Promise<Array<Student>> {
     return new Promise( (resolve, reject) => {
       let mobileApi = Env.getEnvValue('MOBILE_API');
 
@@ -68,12 +72,16 @@ export class UserService {
       this.http.get(`${mobileApi}v1/users`, opts)
         .subscribe(
           data => {
-            resolve(data);
+            let students: Array<Student> = []
+            students = _.map(data.json(), (student) => {
+               return Student.fromJSON(student);
+            });
+
+            resolve(students);
           },
           error => {
             reject(error);
           });
     });
   }
-
 }

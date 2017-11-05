@@ -1,3 +1,4 @@
+import { Student } from '../../models/student';
 import { UserService } from '../../providers/user_service';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
@@ -8,26 +9,18 @@ import { ItemDetailsPage } from '../item-details/item-details';
   templateUrl: 'student-list.html'
 })
 export class StudentListPage {
-  selectedItem: any;
-  items: Array<{title: string, note: string, icon: string}>;
-  students: string[];
+  students: Array<Student>;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public userService: UserService) {
 
       userService.getStudents().then((students) => {
-        debugger
+        this.students = students;
       });
   }
 
-  itemTapped(event, item) {
-    this.navCtrl.push(ItemDetailsPage, {
-      item: item
-    });
-  }
-
-  loadStudents() {
-    this.students = ['Maria', 'Joao', 'Francisco', 'Rui', 'Manuela'];
+  showStudentHours(student: Student) {
+    console.log("Show student " + student.id);
   }
 }
