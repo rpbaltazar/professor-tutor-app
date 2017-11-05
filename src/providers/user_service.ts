@@ -29,6 +29,7 @@ export class UserService {
         .subscribe(
           data => {
             this.user_data = data.json();
+            this.storage.set("current_user", this.user_data["id"]);
             this.storage.set("user_type", this.user_data["user_type"]);
             this.storage.set("api_key", this.user_data["api_key"]);
             resolve(this.user_data);

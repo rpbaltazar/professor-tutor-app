@@ -9,12 +9,12 @@ import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
-import { UserService } from '../providers/user_service';
-
 import { StudyHoursPage } from '../pages/study-hours/study-hours';
 import { StudentListPage } from '../pages/student-list/student-list';
 import { NewSchedulePage } from '../pages/new-schedule/new-schedule';
 
+import { StudyHoursService } from '../providers/study_hours_service';
+import { UserService } from '../providers/user_service';
 
 @NgModule({
   declarations: [
@@ -44,6 +44,7 @@ import { NewSchedulePage } from '../pages/new-schedule/new-schedule';
     StatusBar,
     SplashScreen,
     UserService,
+    StudyHoursService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

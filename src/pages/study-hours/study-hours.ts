@@ -1,3 +1,4 @@
+import { StudyHoursService } from '../../providers/study_hours_service';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { NewSchedulePage } from '../new-schedule/new-schedule';
@@ -10,32 +11,27 @@ import * as moment from 'moment/moment';
 
 export class StudyHoursPage {
   selectedStudent: any;
-  weeklySchedule: Array<{title: string, schedule: string[]}>;
   shownWeekday: any;
   weekString: string;
   beginningOfWeek: any;
   endOfWeek: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.selectedStudent = navParams.get('selectedStudent');
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private studyHoursService: StudyHoursService) {
+
     this.load()
   }
 
   load(){
-    this._loadStudentWorkload();
+    this.loadStudentWorkload();
     this._setWeekString();
   }
 
-  _loadStudentWorkload() {
-    this.weeklySchedule = [
-      { title: 'Segunda', schedule: ['Matematica 10-11'] },
-      { title: 'Terca',   schedule: [] },
-      { title: 'Quarta',  schedule: [] },
-      { title: 'Quinta',  schedule: [] },
-      { title: 'Sexta',   schedule: [] },
-      { title: 'Sabado',  schedule: [] },
-      { title: 'Domingo', schedule: [] }
-    ];
+  loadStudentWorkload() {
+    this.studyHoursService.getStudyHoursForWeek().then((studyHours) => {
+      debugger
+    });
   }
 
   _setWeekString() {

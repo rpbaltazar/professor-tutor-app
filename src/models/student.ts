@@ -1,4 +1,3 @@
-import { SafeHtml } from '@angular/platform-browser';
 export class Student {
   id: Number;
   firstName: String;

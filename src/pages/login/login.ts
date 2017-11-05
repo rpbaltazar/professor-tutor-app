@@ -1,3 +1,4 @@
+import { StudyHoursPage } from '../study-hours/study-hours';
 import { StudentListPage } from '../student-list/student-list';
 import { RegisterPage } from '../register/register';
 import { UserService } from '../../providers/user_service';
@@ -35,7 +36,7 @@ export class LoginPage {
       if(data["user_type"] == "Professor") {
         this.navCtrl.push(StudentListPage);
       } else {
-        alert("Implement Student!");
+        this.navCtrl.push(StudyHoursPage);
       }
     }).catch( () => {
       const alert = this.alertCtrl.create({
