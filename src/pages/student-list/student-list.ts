@@ -2,7 +2,7 @@ import { Student } from '../../models/student';
 import { UserService } from '../../providers/user_service';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { ItemDetailsPage } from '../item-details/item-details';
+import { StudyHoursPage } from '../study-hours/study-hours';
 
 @Component({
   selector: 'student-list-page',
@@ -21,6 +21,7 @@ export class StudentListPage {
   }
 
   showStudentHours(student: Student) {
-    console.log("Show student " + student.id);
+    let params: any = { selectedStudent: student}
+    this.navCtrl.push(StudyHoursPage, params);
   }
 }

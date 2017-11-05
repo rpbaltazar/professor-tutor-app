@@ -3,7 +3,7 @@
     <button menuToggle *ngIf="!selectedStudent">
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title *ngIf="selectedStudent">{{selectedStudent.title}}</ion-title>
+    <ion-title *ngIf="selectedStudent">Study Hours for {{selectedStudent.fullName()}}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -11,15 +11,15 @@
   <ion-list>
     <div *ngFor="let weekday of weeklySchedule">
       <ion-item (click)="toggleWeekday(weekday)">
-	<ion-icon name="add"></ion-icon>
-	&nbsp; {{ weekday.title }}
+        <ion-icon name="add"></ion-icon>
+        &nbsp; {{ weekday.title }}
       </ion-item>
       <div *ngIf="isWeekdayShown(weekday)">
-	<div *ngFor="let scheduledHour of weekday.schedule">
-	  <ion-item>
-	    {{ scheduledHour }}
-	  </ion-item>
-	</div>
+        <div *ngFor="let scheduledHour of weekday.schedule">
+          <ion-item>
+            {{ scheduledHour }}
+          </ion-item>
+        </div>
       </div>
     </div>
   </ion-list>
@@ -35,11 +35,11 @@
   <ion-toolbar>
     <ion-buttons>
       <button ion-button icon-only small class="footer-bar-item item-left" (click)="previousWeek($event)">
-	<ion-icon name="arrow-back"></ion-icon>
+        <ion-icon name="arrow-back"></ion-icon>
       </button>
 
       <button ion-button icon-only small class="footer-bar-item item-right" (click)="nextWeek($event)">
-	<ion-icon name="arrow-forward"></ion-icon>
+        <ion-icon name="arrow-forward"></ion-icon>
       </button>
     </ion-buttons>
 

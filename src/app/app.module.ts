@@ -11,7 +11,7 @@ import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { UserService } from '../providers/user_service';
 
-import { ItemDetailsPage } from '../pages/item-details/item-details';
+import { StudyHoursPage } from '../pages/study-hours/study-hours';
 import { StudentListPage } from '../pages/student-list/student-list';
 import { NewSchedulePage } from '../pages/new-schedule/new-schedule';
 
@@ -21,7 +21,7 @@ import { NewSchedulePage } from '../pages/new-schedule/new-schedule';
     MyApp,
     LoginPage,
     RegisterPage,
-    ItemDetailsPage,
+    StudyHoursPage,
     StudentListPage,
     NewSchedulePage
   ],
@@ -36,7 +36,7 @@ import { NewSchedulePage } from '../pages/new-schedule/new-schedule';
     MyApp,
     LoginPage,
     RegisterPage,
-    ItemDetailsPage,
+    StudyHoursPage,
     StudentListPage,
     NewSchedulePage
   ],

@@ -4,11 +4,11 @@ import { NewSchedulePage } from '../new-schedule/new-schedule';
 import * as moment from 'moment/moment';
 
 @Component({
-  selector: 'item-details-page',
-  templateUrl: 'item-details.html'
+  selector: 'study-hours-page',
+  templateUrl: 'study-hours.html'
 })
 
-export class ItemDetailsPage {
+export class StudyHoursPage {
   selectedStudent: any;
   weeklySchedule: Array<{title: string, schedule: string[]}>;
   shownWeekday: any;
@@ -17,8 +17,7 @@ export class ItemDetailsPage {
   endOfWeek: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    // If we navigated to this page, we will have an item available as a nav param
-    this.selectedStudent = navParams.get('item');
+    this.selectedStudent = navParams.get('selectedStudent');
     this.load()
   }
 
