@@ -1,4 +1,4 @@
-import { Day } from '../models/day';
+import { Week } from '../models/week';
 import * as _ from 'lodash';
 
 import { Injectable } from '@angular/core';
@@ -18,7 +18,7 @@ export class StudyHoursService {
     });
   }
 
-  getStudyHoursForWeek(): Promise<Array<Day>> {
+  getStudyHoursForWeek(): Promise<Week> {
     return new Promise( (resolve, reject) => {
       this.apiKeyPromise.then(() => {
         let mobileApi = Env.getEnvValue('MOBILE_API');
@@ -29,7 +29,7 @@ export class StudyHoursService {
 
         this.http.get(`${mobileApi}v1/study_hours`, opts)
             .subscribe((data) => {
-              resolve(Day.fromJSON(data.json()));
+              resolve(Week.fromJSON(data.json()));
           }, (error) => {
             reject(error);
         });

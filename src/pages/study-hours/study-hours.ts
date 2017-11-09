@@ -29,8 +29,8 @@ export class StudyHoursPage {
   }
 
   loadStudentWorkload() {
-    this.studyHoursService.getStudyHoursForWeek().then((studyHours) => {
-      debugger
+    this.studyHoursService.getStudyHoursForWeek().then((week) => {
+      debugger;
     });
   }
 
@@ -38,7 +38,7 @@ export class StudyHoursPage {
     let today = moment();
     this.beginningOfWeek = today.clone().startOf("isoWeek");
     this.endOfWeek = today.clone().endOf("isoWeek");
-    this.weekString = this.beginningOfWeek.format("DD/MMM") + " - " + this.endOfWeek.format("DD/MMM");
+    this.weekString = `${this.beginningOfWeek.format("DD/MMM")}  -  ${this.endOfWeek.format("DD/MMM")}`;
   }
 
   itemTapped(event, item) {
@@ -68,14 +68,14 @@ export class StudyHoursPage {
     });
   }
 
-  previousWeek(event) {
+  previousWeek() {
     this.beginningOfWeek.subtract(1, "week");
     this.endOfWeek.subtract(1, "week");
     this.weekString = this.beginningOfWeek.format("DD/MMM") + " - " + this.endOfWeek.format("DD/MMM");
     // this._updatePage(currentWeek);
   }
 
-  nextWeek(event) {
+  nextWeek() {
     this.beginningOfWeek.add(1, "week");
     this.endOfWeek.add(1, "week");
     this.weekString = this.beginningOfWeek.format("DD/MMM") + " - " + this.endOfWeek.format("DD/MMM");
