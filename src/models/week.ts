@@ -17,13 +17,13 @@ export class Week {
 
   private static getWeekdays(): any {
     return {
-      0: 'Segunda',
-      1: 'Terca',
-      2: 'Quarta',
-      3: 'Quinta',
-      4: 'Sexta',
-      5: 'Sabado',
-      6: 'Domingo'
+      0: 'Domingo',
+      1: 'Segunda',
+      2: 'Terca',
+      3: 'Quarta',
+      4: 'Quinta',
+      5: 'Sexta',
+      6: 'Sabado',
     }
   }
   

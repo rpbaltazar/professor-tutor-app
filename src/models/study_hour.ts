@@ -1,4 +1,6 @@
 import * as moment from 'moment/moment';
+import * as _ from 'lodash';
+
 import { DateTime } from 'ionic-angular/umd';
 import { Moment } from 'moment/moment';
 import { Env } from '../config/env';
@@ -22,6 +24,14 @@ export class StudyHour {
     studyHour.completedAt = json["completed_at"];
     studyHour.description = json["description"];
     return studyHour;
+  }
+
+  isStarted(): boolean {
+    return !_.isEmpty(this.startedAt);
+  }
+
+  isComplete(): boolean {
+    return !_.isEmpty(this.completedAt);
   }
 
   durationInMinutes(): number {
