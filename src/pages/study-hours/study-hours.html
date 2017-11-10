@@ -17,7 +17,7 @@
       <div *ngIf="isWeekdayShown(weekday)">
         <div *ngFor="let studyHour of weekday.studyHours">
           <ion-item>
-            {{ description }}
+            {{ studyHour.description }}
           </ion-item>
         </div>
       </div>
