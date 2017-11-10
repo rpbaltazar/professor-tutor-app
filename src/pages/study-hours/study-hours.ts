@@ -1,3 +1,4 @@
+import { Week } from '../../models/week';
 import { StudyHoursService } from '../../providers/study_hours_service';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
@@ -15,6 +16,7 @@ export class StudyHoursPage {
   weekString: string;
   beginningOfWeek: any;
   endOfWeek: any;
+  studyWeek: Week;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -30,7 +32,7 @@ export class StudyHoursPage {
 
   loadStudentWorkload() {
     this.studyHoursService.getStudyHoursForWeek().then((week) => {
-      debugger;
+      this.studyWeek = week;
     });
   }
 

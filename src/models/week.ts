@@ -8,7 +8,7 @@ export class Week {
 
   constructor() {
     // Initialize the whole week in the constructor
-    this.studyDays = _.map(Week.getWeekdays(), (dayOfWeek, nameOfDay) => {
+    this.studyDays = _.map(Week.getWeekdays(), (nameOfDay, dayOfWeek) => {
       let day: Day = new Day();
       day.dayOfWeek = dayOfWeek;
       return day;

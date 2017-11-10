@@ -8,16 +8,16 @@
 </ion-header>
 
 <ion-content >
-  <ion-list>
-    <div *ngFor="let weekday of weeklySchedule">
+  <ion-list *ngIf="studyWeek">
+    <div *ngFor="let weekday of studyWeek.studyDays">
       <ion-item (click)="toggleWeekday(weekday)">
         <ion-icon name="add"></ion-icon>
-        &nbsp; {{ weekday.title }}
+        {{ weekday.getDayName() }}
       </ion-item>
       <div *ngIf="isWeekdayShown(weekday)">
-        <div *ngFor="let scheduledHour of weekday.schedule">
+        <div *ngFor="let studyHour of weekday.studyHours">
           <ion-item>
-            {{ scheduledHour }}
+            {{ description }}
           </ion-item>
         </div>
       </div>
