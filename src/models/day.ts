@@ -9,4 +9,11 @@ export class Day {
   public getDayName(): String {
     return Week.getNameOfDay(this.dayOfWeek);
   }
+
+  public isEmpty() {
+    if(_.isEmpty(this.studyHours)) {
+      return true;
+    }
+    return this.studyHours.length == 0;
+  }
 }

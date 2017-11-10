@@ -1,9 +1,11 @@
+import * as moment from 'moment/moment';
+import { Moment } from 'moment/moment';
+
 import { Week } from '../../models/week';
 import { StudyHoursService } from '../../providers/study_hours_service';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { NewSchedulePage } from '../new-schedule/new-schedule';
-import * as moment from 'moment/moment';
 
 @Component({
   selector: 'study-hours-page',
@@ -26,12 +28,12 @@ export class StudyHoursPage {
   }
 
   load(){
-    this.loadStudentWorkload();
     this._setWeekString();
+    this.loadStudentWorkload(this.beginningOfWeek);
   }
 
-  loadStudentWorkload() {
-    this.studyHoursService.getStudyHoursForWeek().then((week) => {
+  loadStudentWorkload(date: Moment) {
+    this.studyHoursService.getStudyHoursForWeek(date).then((week) => {
       this.studyWeek = week;
     });
   }
@@ -41,14 +43,6 @@ export class StudyHoursPage {
     this.beginningOfWeek = today.clone().startOf("isoWeek");
     this.endOfWeek = today.clone().endOf("isoWeek");
     this.weekString = `${this.beginningOfWeek.format("DD/MMM")}  -  ${this.endOfWeek.format("DD/MMM")}`;
-  }
-
-  itemTapped(event, item) {
-    console.log(arguments);
-  }
-
-  itemDelete(item) {
-    console.log(arguments);
   }
 
   isWeekdayShown(weekday) {
@@ -74,19 +68,18 @@ export class StudyHoursPage {
     this.beginningOfWeek.subtract(1, "week");
     this.endOfWeek.subtract(1, "week");
     this.weekString = this.beginningOfWeek.format("DD/MMM") + " - " + this.endOfWeek.format("DD/MMM");
-    // this._updatePage(currentWeek);
+    this._updatePage();
   }
 
   nextWeek() {
     this.beginningOfWeek.add(1, "week");
     this.endOfWeek.add(1, "week");
     this.weekString = this.beginningOfWeek.format("DD/MMM") + " - " + this.endOfWeek.format("DD/MMM");
-    // this._updatePage(currentWeek);
+    this._updatePage();
   }
 
-  _updatePage(currentWeek) {
-    this._updateBottomNavBar(currentWeek);
-    // Fetch user data for currentweek
+  _updatePage() {
+    this.loadStudentWorkload(this.beginningOfWeek);
   }
 
   _updateBottomNavBar(currentWeek){

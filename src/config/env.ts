@@ -3,7 +3,8 @@ export namespace Env {
       APP_VERSION: '0.2 Alpha',
       DATABASE_NAME: 'professor-tutor-app',
       DATABASE_LOCATION: 'default',
-      APP_ENVIRONMENT: 'development'
+      APP_ENVIRONMENT: 'development',
+      DATETIME_FORMAT: "MMM D, YYYY, h:mm A"
     }
 
     const development = {

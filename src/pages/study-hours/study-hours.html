@@ -11,14 +11,21 @@
   <ion-list *ngIf="studyWeek">
     <div *ngFor="let weekday of studyWeek.studyDays">
       <ion-item (click)="toggleWeekday(weekday)">
-        <ion-icon name="add"></ion-icon>
+        <ion-icon name="add" *ngIf="!weekday.isEmpty()"></ion-icon>
         {{ weekday.getDayName() }}
       </ion-item>
       <div *ngIf="isWeekdayShown(weekday)">
         <div *ngFor="let studyHour of weekday.studyHours">
-          <ion-item>
-            {{ studyHour.description }}
-          </ion-item>
+          <ion-card (click)="showStudyHours(studyHour);">
+            <ion-card-header>
+              {{studyHour.description}}
+            </ion-card-header>
+          
+            <ion-card-content>
+              <h3>{{studyHour.formattedDateTimeInfo()}}</h3>
+              <h5>Duration: {{studyHour.durationInMinutes()}} minutes</h5>
+            </ion-card-content>
+          </ion-card>
         </div>
       </div>
     </div>
