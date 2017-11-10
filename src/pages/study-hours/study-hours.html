@@ -19,10 +19,17 @@
           <ion-card>
             <ion-card-header>
               {{studyHour.description}}
+              <ion-badge item-end class="unstarted-label" *ngIf="!studyHour.isStarted()">
+                Unstarted
+              </ion-badge>
 
-              <ion-chip small class="unstarted-label" *ngIf="!studyHour.isStarted()">
-                <ion-label>Unstarted</ion-label>
-              </ion-chip>
+              <ion-badge item-end color="secondary" class="started-label" *ngIf="studyHour.isStarted() && !studyHour.isComplete()">
+                Started
+              </ion-badge>
+
+              <ion-badge item-end color="secondary" class="started-label" *ngIf="studyHour.isComplete()">
+                Completed
+              </ion-badge>
             </ion-card-header>
           
             <ion-card-content>
@@ -31,6 +38,7 @@
             </ion-card-content>
 
             <ion-row no-padding>
+
               <span *ngIf="!studyHour.isStarted()">
                 <ion-col >
                   <button ion-button clear small color="default" icon-start>
@@ -39,11 +47,12 @@
                   </button>
                 </ion-col>
               </span>
+
               <span *ngIf="studyHour.isStarted() && !studyHour.isComplete()">
                 <ion-col text-center >
                   <button ion-button clear small color="default" icon-start>
-                    <ion-icon name='square'></ion-icon>
-                    Stop
+                    <ion-icon name='checkmark-circle'></ion-icon>
+                    Complete
                   </button>
                 </ion-col>
               </span>
