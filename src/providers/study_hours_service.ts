@@ -42,4 +42,44 @@ export class StudyHoursService {
       });
     });
   }
+  
+  markAsStarted(studyHourId) {
+    return new Promise( (resolve, reject) => {
+      this.apiKeyPromise.then(() => {
+        let mobileApi = Env.getEnvValue('MOBILE_API');
+
+        let headers = new Headers();
+        headers.append('Authorization', `Token ${this.api_key}`);
+
+        let opts:RequestOptionsArgs = { headers: headers };
+
+        this.http.post(`${mobileApi}v1/study_hours/${studyHourId}/mark_as_started`, {}, opts)
+            .subscribe((data) => {
+              resolve(data.json());
+          }, (error) => {
+            reject(error);
+        });
+      });
+    });
+  }
+
+  markAsCompleted(studyHourId) {
+    return new Promise( (resolve, reject) => {
+      this.apiKeyPromise.then(() => {
+        let mobileApi = Env.getEnvValue('MOBILE_API');
+
+        let headers = new Headers();
+        headers.append('Authorization', `Token ${this.api_key}`);
+
+        let opts:RequestOptionsArgs = { headers: headers };
+
+        this.http.post(`${mobileApi}v1/study_hours/${studyHourId}/mark_as_finished`, {}, opts)
+            .subscribe((data) => {
+              resolve(data.json());
+          }, (error) => {
+            reject(error);
+        });
+      });
+    });
+  }
 }

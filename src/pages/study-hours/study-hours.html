@@ -41,7 +41,7 @@
 
               <span *ngIf="!studyHour.isStarted()">
                 <ion-col >
-                  <button ion-button clear small color="default" icon-start>
+                  <button ion-button clear small color="default" icon-start (click)="markAsStarted(studyHour)">
                     <ion-icon name='play'></ion-icon>
                     Start
                   </button>
@@ -50,7 +50,7 @@
 
               <span *ngIf="studyHour.isStarted() && !studyHour.isComplete()">
                 <ion-col text-center >
-                  <button ion-button clear small color="default" icon-start>
+                  <button ion-button clear small color="default" icon-start (click)="markStudyHourAsCompleted(studyHour)">
                     <ion-icon name='checkmark-circle'></ion-icon>
                     Complete
                   </button>

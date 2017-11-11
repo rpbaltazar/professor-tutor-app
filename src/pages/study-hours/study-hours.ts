@@ -1,10 +1,12 @@
+import { StudyHour } from '../../models/study_hour';
 import * as moment from 'moment/moment';
+import * as _ from 'lodash';
 import { Moment } from 'moment/moment';
 
 import { Week } from '../../models/week';
 import { StudyHoursService } from '../../providers/study_hours_service';
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { AlertController, NavController, ToastController, NavParams } from 'ionic-angular';
 import { NewSchedulePage } from '../new-schedule/new-schedule';
 
 @Component({
@@ -22,6 +24,8 @@ export class StudyHoursPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
+              private alertCtrl: AlertController,
+              private toastCtrl: ToastController,
               private studyHoursService: StudyHoursService) {
 
     this.load()
@@ -36,6 +40,78 @@ export class StudyHoursPage {
     this.studyHoursService.getStudyHoursForWeek(date).then((week) => {
       this.studyWeek = week;
     });
+  }
+
+  showPrompt(title, message, successCallback, cancelCallback) {
+    let prompt = this.alertCtrl.create({
+      title: title,
+      message: message,
+      buttons: [
+        {
+          text: 'Yes',
+          handler: (data) => {
+            if(_.isFunction(successCallback)) {
+              successCallback(data);
+            }
+          }
+        },
+        {
+          text: 'No',
+          handler: (data) => {
+            if(_.isFunction(cancelCallback)) {
+              cancelCallback(data);
+            }
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
+  showToast(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom'
+    });
+  }
+
+  markAsStarted(studyHour: StudyHour) {
+    let title = "Mark As Started ?";
+    let prompt = `Are you sure you want to mark ${studyHour.description} as started ?`
+
+    let successCallback = function() {
+      this.studyHoursService.markAsStarted(studyHour.id).then(() => {
+        this.loadStudentWorkload(this.beginningOfWeek);
+        this.showToast(`${studyHour.description} marked as started!`);
+      });
+    }.bind(this)
+
+    this.showPrompt(
+      title,
+      prompt,
+      successCallback,
+      null
+    );
+  }
+
+  markStudyHourAsCompleted(studyHour) {
+    let title = "Mark As Completed ?";
+    let prompt = `Are you sure you want to mark ${studyHour.description} as completed ?`
+
+    let successCallback = function() {
+      this.studyHoursService.markAsCompleted(studyHour.id).then(() => {
+        this.loadStudentWorkload(this.beginningOfWeek);
+        this.showToast(`${studyHour.description} marked as completed!`);
+      });
+    }.bind(this);
+
+    this.showPrompt(
+      title, 
+      prompt,
+      successCallback,
+      null
+    );
   }
 
   _setWeekString() {
@@ -58,12 +134,6 @@ export class StudyHoursPage {
     }
   }
 
-  addNewHour(event) {
-    this.navCtrl.push(NewSchedulePage, {
-      selectedStudent: this.selectedStudent
-    });
-  }
-
   previousWeek() {
     this.beginningOfWeek.subtract(1, "week");
     this.endOfWeek.subtract(1, "week");
@@ -80,9 +150,5 @@ export class StudyHoursPage {
 
   _updatePage() {
     this.loadStudentWorkload(this.beginningOfWeek);
-  }
-
-  _updateBottomNavBar(currentWeek){
-
   }
 }
