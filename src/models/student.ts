@@ -1,14 +1,14 @@
 export class Student {
-  id: Number;
-  firstName: String;
-  lastName: String;
-  emailAddress: String;
+  id: number;
+  firstName: string;
+  lastName: string;
+  emailAddress: string;
 
   constructor() {
     
   }
 
-  public fullName(): String {
+  public fullName(): string {
     return `${this.firstName} ${this.lastName}`
   }
 

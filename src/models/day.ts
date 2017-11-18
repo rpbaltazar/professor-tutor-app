@@ -6,7 +6,7 @@ export class Day {
   dayOfWeek: number;
   studyHours: Array<StudyHour>
 
-  public getDayName(): String {
+  public getDayName(): string {
     return Week.getNameOfDay(this.dayOfWeek);
   }
 

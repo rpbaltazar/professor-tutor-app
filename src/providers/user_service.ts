@@ -11,7 +11,7 @@ import { Env } from '../config/env';
 @Injectable()
 export class UserService {
   user_data: any;
-  currentUserType: String;
+  currentUserType: string;
 
   constructor(public http: Http, private storage: Storage) {
     this.http = http;

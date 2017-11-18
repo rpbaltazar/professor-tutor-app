@@ -6,13 +6,13 @@ import { Moment } from 'moment/moment';
 import { Env } from '../config/env';
 
 export class StudyHour {
-  id: Number;
-  user_id: Number;
+  id: number;
+  user_id: number;
   startTime: Moment;
   endTime: Moment;
   startedAt: DateTime;
   completedAt: DateTime;
-  description: String;
+  description: string;
 
   public static fromJSON(json): StudyHour {
     let studyHour: StudyHour = new StudyHour()
@@ -38,15 +38,15 @@ export class StudyHour {
     return this.endTime.diff(this.startTime, 'minutes')
   }
 
-  formattedDateTimeInfo(): String {
+  formattedDateTimeInfo(): string {
     return `${this.formattedStartTime()} to ${this.formattedEndTime()}`
   }
 
-  formattedStartTime(): String {
+  formattedStartTime(): string {
     return this.startTime.format(Env.getEnvValue("DATETIME_FORMAT"));
   }
   
-  formattedEndTime(): String {
+  formattedEndTime(): string {
     return this.endTime.format(Env.getEnvValue("DATETIME_FORMAT"))
   }
 }

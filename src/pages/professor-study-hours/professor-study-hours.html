@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle *ngIf="!selectedStudent">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title *ngIf="selectedStudent">Study Hours for {{selectedStudent.fullName()}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content >
+  <ion-list *ngIf="studyWeek">
+    <div *ngFor="let weekday of studyWeek.studyDays">
+      <ion-item (click)="toggleWeekday(weekday)">
+        <ion-icon name="add" *ngIf="!weekday.isEmpty()"></ion-icon>
+        {{ weekday.getDayName() }}
+      </ion-item>
+      <div *ngIf="isWeekdayShown(weekday)">
+        <div *ngFor="let studyHour of weekday.studyHours">
+          <ion-card>
+            <ion-card-header>
+              {{studyHour.description}}
+              <ion-badge item-end class="unstarted-label" *ngIf="!studyHour.isStarted()">
+                Unstarted
+              </ion-badge>
+
+              <ion-badge item-end color="secondary" class="started-label" *ngIf="studyHour.isStarted() && !studyHour.isComplete()">
+                Started
+              </ion-badge>
+
+              <ion-badge item-end color="secondary" class="started-label" *ngIf="studyHour.isComplete()">
+                Completed
+              </ion-badge>
+            </ion-card-header>
+          
+            <ion-card-content>
+              <h3>{{studyHour.formattedDateTimeInfo()}}</h3>
+              <h5>Duration: {{studyHour.durationInMinutes()}} minutes</h5>
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </div>
+    </div>
+  </ion-list>
+</ion-content>
+
+<ion-footer class="footer-bar-custom">
+  <ion-toolbar>
+    <ion-buttons>
+      <button ion-button icon-only small class="footer-bar-item item-left" (click)="previousWeek()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+
+      <button ion-button icon-only small class="footer-bar-item item-right" (click)="nextWeek()">
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <div class="footer-bar-item item-center">
+      {{ weekString }}
+    </div>
+  </ion-toolbar>
+</ion-footer>

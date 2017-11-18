@@ -34,9 +34,6 @@ export class LoginPage {
     var password = this.loginData.get("password").value
     this.userService.signIn(emailAddress, password).then(data => {
 
-      console.log(`Is user professor ${this.userService.isProfessor()}`)
-      console.log(`Is user student ${this.userService.isStudent()}`)
-
       if(this.userService.isProfessor()) {
         this.navCtrl.push(StudentListPage);
       } else {

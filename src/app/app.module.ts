@@ -1,3 +1,4 @@
+import { ProfessorStudyHoursPage } from '../pages/professor-study-hours/professor-study-hours';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { NgModule, ErrorHandler } from '@angular/core';
@@ -22,6 +23,7 @@ import { UserService } from '../providers/user_service';
     LoginPage,
     RegisterPage,
     StudentStudyHoursPage,
+    ProfessorStudyHoursPage,
     StudentListPage,
     NewSchedulePage
   ],
@@ -37,6 +39,7 @@ import { UserService } from '../providers/user_service';
     LoginPage,
     RegisterPage,
     StudentStudyHoursPage,
+    ProfessorStudyHoursPage,
     StudentListPage,
     NewSchedulePage
   ],
