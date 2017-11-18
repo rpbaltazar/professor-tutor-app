@@ -8,13 +8,14 @@ import { StudyHoursService } from '../../providers/study_hours_service';
 import { Component } from '@angular/core';
 import { AlertController, NavController, ToastController, NavParams } from 'ionic-angular';
 import { NewSchedulePage } from '../new-schedule/new-schedule';
+import { UserService } from '../../providers/user_service';
 
 @Component({
-  selector: 'study-hours-page',
-  templateUrl: 'study-hours.html'
+  selector: 'student-study-hours-page',
+  templateUrl: 'student-study-hours.html'
 })
 
-export class StudyHoursPage {
+export class StudentStudyHoursPage {
   selectedStudent: any;
   shownWeekday: any;
   weekString: string;
@@ -26,9 +27,8 @@ export class StudyHoursPage {
               public navParams: NavParams,
               private alertCtrl: AlertController,
               private toastCtrl: ToastController,
-              private studyHoursService: StudyHoursService) {
-
-    this.load()
+              private studyHoursService: StudyHoursService,
+              private userService: UserService) {
   }
 
   load(){

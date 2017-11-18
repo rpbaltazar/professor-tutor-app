@@ -1,4 +1,4 @@
-import { StudyHoursPage } from '../study-hours/study-hours';
+import { StudentStudyHoursPage } from '../student-study-hours/student-study-hours';
 import { StudentListPage } from '../student-list/student-list';
 import { RegisterPage } from '../register/register';
 import { UserService } from '../../providers/user_service';
@@ -19,7 +19,7 @@ export class LoginPage {
     private userService: UserService
    ) {
     this.loginData = new FormGroup({ // TODO: Add validation
-      email: new FormControl("jude@airdrilling.com"),
+      email: new FormControl("ranhiru@gmail.com"),
       password: new FormControl("12345678")
    });
 
@@ -33,10 +33,14 @@ export class LoginPage {
     var emailAddress = this.loginData.get("email").value
     var password = this.loginData.get("password").value
     this.userService.signIn(emailAddress, password).then(data => {
-      if(data["user_type"] == "Professor") {
+
+      console.log(`Is user professor ${this.userService.isProfessor()}`)
+      console.log(`Is user student ${this.userService.isStudent()}`)
+
+      if(this.userService.isProfessor()) {
         this.navCtrl.push(StudentListPage);
       } else {
-        this.navCtrl.push(StudyHoursPage);
+        this.navCtrl.push(StudentStudyHoursPage);
       }
     }).catch( () => {
       const alert = this.alertCtrl.create({

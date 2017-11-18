@@ -9,7 +9,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
-import { StudyHoursPage } from '../pages/study-hours/study-hours';
+import { StudentStudyHoursPage } from '../pages/student-study-hours/student-study-hours';
 import { StudentListPage } from '../pages/student-list/student-list';
 import { NewSchedulePage } from '../pages/new-schedule/new-schedule';
 
@@ -21,7 +21,7 @@ import { UserService } from '../providers/user_service';
     MyApp,
     LoginPage,
     RegisterPage,
-    StudyHoursPage,
+    StudentStudyHoursPage,
     StudentListPage,
     NewSchedulePage
   ],
@@ -36,7 +36,7 @@ import { UserService } from '../providers/user_service';
     MyApp,
     LoginPage,
     RegisterPage,
-    StudyHoursPage,
+    StudentStudyHoursPage,
     StudentListPage,
     NewSchedulePage
   ],

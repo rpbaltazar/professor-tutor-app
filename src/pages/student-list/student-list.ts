@@ -2,7 +2,7 @@ import { Student } from '../../models/student';
 import { UserService } from '../../providers/user_service';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { StudyHoursPage } from '../study-hours/study-hours';
+import { StudentStudyHoursPage } from '../student-study-hours/student-study-hours';
 
 @Component({
   selector: 'student-list-page',
@@ -14,14 +14,13 @@ export class StudentListPage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public userService: UserService) {
-
-      userService.getStudents().then((students) => {
-        this.students = students;
-      });
+    userService.getStudents().then((students) => {
+      this.students = students;
+    });
   }
 
   showStudentHours(student: Student) {
     let params: any = { selectedStudent: student}
-    this.navCtrl.push(StudyHoursPage, params);
+    this.navCtrl.push(StudentStudyHoursPage, params);
   }
 }

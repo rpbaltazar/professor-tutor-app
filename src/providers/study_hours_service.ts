@@ -1,5 +1,5 @@
 import * as _ from 'lodash';
-import moment from 'moment';
+import moment, { Moment } from 'moment';
 import { Week } from '../models/week';
 
 import { Injectable } from '@angular/core';
@@ -42,7 +42,31 @@ export class StudyHoursService {
       });
     });
   }
-  
+
+  getStudyHoursForStudent(studentId: number, date = moment()) : Promise<Week> {
+    return new Promise( (resolve, reject) => {
+      this.apiKeyPromise.then(() => {
+        let mobileApi = Env.getEnvValue('MOBILE_API');
+
+        let headers = new Headers();
+        headers.append('Authorization', `Token ${this.api_key}`);
+
+        let params = {
+          date: date.format()
+        }
+
+        let opts:RequestOptionsArgs = { headers: headers, params: params };
+
+        this.http.get(`${mobileApi}v1/study_hours/${studentId}`, opts)
+            .subscribe((data) => {
+              resolve(Week.fromJSON(data.json()));
+          }, (error) => {
+            reject(error);
+        });
+      });
+    });
+  }
+
   markAsStarted(studyHourId) {
     return new Promise( (resolve, reject) => {
       this.apiKeyPromise.then(() => {

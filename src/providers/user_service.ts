@@ -11,6 +11,7 @@ import { Env } from '../config/env';
 @Injectable()
 export class UserService {
   user_data: any;
+  currentUserType: String;
 
   constructor(public http: Http, private storage: Storage) {
     this.http = http;
@@ -29,6 +30,7 @@ export class UserService {
         .subscribe(
           data => {
             this.user_data = data.json();
+            this.currentUserType = this.user_data["user_type"]
             this.storage.set("current_user", this.user_data["id"]);
             this.storage.set("user_type", this.user_data["user_type"]);
             this.storage.set("api_key", this.user_data["api_key"]);
@@ -38,6 +40,14 @@ export class UserService {
             reject(error);
         });
     });
+  }
+
+  isProfessor() {
+    return this.currentUserType == "Professor";
+  }
+
+  isStudent() {
+    return this.currentUserType == "Student";
   }
 
   createUser(data) {
@@ -82,7 +92,7 @@ export class UserService {
           },
           error => {
             reject(error);
-          });
+        });
     });
   }
 }
