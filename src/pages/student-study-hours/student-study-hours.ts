@@ -29,7 +29,7 @@ export class StudentStudyHoursPage {
               private userService: UserService) {
   }
 
-  ionViewDidLoad(){
+  ionViewDidEnter(){
     this._setWeekString();
     this.loadStudentWorkload(this.beginningOfWeek);
   }

@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title *ngIf="selectedStudent">Nova Tarefa para {{selectedStudent.fullName()}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <form id="new-schedule-form" [formGroup]="updateScheduleData">
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>Hora de Comeco</ion-label>
+        <ion-datetime displayFormat="DD-MMM-YYYY HH:mm"
+          formControlName="startDate">
+        </ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Hora de Fim</ion-label>
+        <ion-datetime displayFormat="DD-MMM-YYYY HH:mm"
+          formControlName="endDate">
+        </ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Tarefa</ion-label>
+        <ion-input type="text" formControlName="assignment"></ion-input>
+      </ion-item>
+    </ion-list>
+
+  <div padding>
+    <button ion-button color="primary" block (click)="updateStudyHour()">Update</button>
+  </div>
+
+  </form>
+</ion-content>

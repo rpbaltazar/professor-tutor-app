@@ -36,13 +36,30 @@
               <h3>{{studyHour.formattedDateTimeInfo()}}</h3>
               <h5>Duration: {{studyHour.durationInMinutes()}} minutes</h5>
             </ion-card-content>
+
+            <ion-row no-padding>
+              <span *ngIf="!studyHour.isStarted()">
+                <ion-col >
+                  <button ion-button clear small color="default" icon-start (click)="edit(studyHour)">
+                    <ion-icon name='cog'></ion-icon>
+                    Edit
+                  </button>
+                </ion-col>
+                <ion-col >
+                  <button ion-button clear small color="danger" icon-start (click)="delete(studyHour)">
+                    <ion-icon name='trash'></ion-icon>
+                    Delete
+                  </button>
+                </ion-col>
+              </span>
+            </ion-row>
           </ion-card>
         </div>
       </div>
     </div>
   </ion-list>
 
-  <ion-fab right bottom (click)="addNewSchedule()">
+  <ion-fab right bottom (click)="addStudyHour()">
     <button ion-fab color="primary">
       <ion-icon name="add"></ion-icon>
     </button>

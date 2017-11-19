@@ -16,6 +16,7 @@ import { NewSchedulePage } from '../pages/new-schedule/new-schedule';
 
 import { StudyHoursService } from '../providers/study_hours_service';
 import { UserService } from '../providers/user_service';
+import { UpdateSchedulePage } from '../pages/update-schedule/update-schedule';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { UserService } from '../providers/user_service';
     StudentStudyHoursPage,
     ProfessorStudyHoursPage,
     StudentListPage,
-    NewSchedulePage
+    NewSchedulePage,
+    UpdateSchedulePage
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,8 @@ import { UserService } from '../providers/user_service';
     StudentStudyHoursPage,
     ProfessorStudyHoursPage,
     StudentListPage,
-    NewSchedulePage
+    NewSchedulePage,
+    UpdateSchedulePage
   ],
   providers: [
     StatusBar,

@@ -135,4 +135,52 @@ export class StudyHoursService {
       });
     });
   }
+
+  updateStudyHour(data): Promise<any> {
+    return new Promise( (resolve, reject) => {
+      this.apiKeyPromise.then(() => {
+        let mobileApi = Env.getEnvValue('MOBILE_API');
+
+        let headers = new Headers();
+        headers.append('Authorization', `Token ${this.api_key}`);
+
+        let params = {
+          study_hour: {
+            start_time: data["start_time"],
+            end_time: data["end_time"],
+            description: data["description"]
+          }
+        }
+
+        let opts:RequestOptionsArgs = { headers: headers };
+
+        this.http.put(`${mobileApi}v1/study_hours/${data["id"]}`, params, opts)
+            .subscribe((data) => {
+              resolve();
+          }, (error) => {
+            reject(error);
+        });
+      });
+    });
+  }
+
+  deleteStudyHour(id): Promise<any> {
+    return new Promise( (resolve, reject) => {
+      this.apiKeyPromise.then(() => {
+        let mobileApi = Env.getEnvValue('MOBILE_API');
+
+        let headers = new Headers();
+        headers.append('Authorization', `Token ${this.api_key}`);
+
+        let opts:RequestOptionsArgs = { headers: headers };
+
+        this.http.delete(`${mobileApi}v1/study_hours/${id}`, opts)
+            .subscribe((data) => {
+              resolve();
+          }, (error) => {
+            reject(error);
+        });
+      });
+    });
+  }
 }

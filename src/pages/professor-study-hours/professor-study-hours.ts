@@ -10,6 +10,7 @@ import { Component } from '@angular/core';
 import { AlertController, NavController, ToastController, NavParams } from 'ionic-angular';
 import { NewSchedulePage } from '../new-schedule/new-schedule';
 import { UserService } from '../../providers/user_service';
+import { UpdateSchedulePage } from '../update-schedule/update-schedule';
 
 @Component({
   selector: 'professor-study-hours-page',
@@ -33,7 +34,7 @@ export class ProfessorStudyHoursPage {
       this.selectedStudent = this.navParams.get("selectedStudent")
   }
 
-  ionViewDidLoad(){
+  ionViewDidEnter(){
     this._setWeekString();
     this.loadStudentStudyHours(this.beginningOfWeek);
   }
@@ -44,7 +45,7 @@ export class ProfessorStudyHoursPage {
     });
   }
 
-  addNewSchedule() {
+  addStudyHour() {
     let params: any = { 
       selectedStudent: this.selectedStudent,
       date: this.beginningOfWeek
@@ -52,24 +53,44 @@ export class ProfessorStudyHoursPage {
     this.navCtrl.push(NewSchedulePage, params);
   }
 
-  showPrompt(title, message, successCallback, cancelCallback) {
+  delete(studyHour: StudyHour) {
+    let message = `Do you want to delete ${studyHour.description} 
+                   for ${this.selectedStudent.fullName()}`
+    this.showPrompt("Delete ?", message, this.deleteStudyHour.bind(this), null, studyHour);
+  }
+
+  deleteStudyHour(studyHour: StudyHour) {
+    this.studyHoursService.deleteStudyHour(studyHour.id).then(() => {
+      this.showToast(`Study Hour ${studyHour.description} removed`)
+      this.loadStudentStudyHours(this.beginningOfWeek);
+    });
+  }
+
+  edit(studyHour) {
+    let params: any = { 
+      studyHour: studyHour
+    }
+    this.navCtrl.push(UpdateSchedulePage, params);
+  }
+
+  showPrompt(title, message, successCallback, cancelCallback, extraData = {}) {
     let prompt = this.alertCtrl.create({
       title: title,
       message: message,
       buttons: [
         {
           text: 'Yes',
-          handler: (data) => {
+          handler: () => {
             if(_.isFunction(successCallback)) {
-              successCallback(data);
+              successCallback(extraData);
             }
           }
         },
         {
           text: 'No',
-          handler: (data) => {
+          handler: () => {
             if(_.isFunction(cancelCallback)) {
-              cancelCallback(data);
+              cancelCallback(extraData);
             }
           }
         }
