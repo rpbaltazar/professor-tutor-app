@@ -26,7 +26,7 @@ export class UserService {
     return new Promise( (resolve, reject) => {
       let mobileApi = Env.getEnvValue('MOBILE_API');
 
-      this.http.post(`${mobileApi}/users/sign_in`, params)
+      this.http.post(`${mobileApi}users/sign_in`, params)
         .subscribe(
           data => {
             this.user_data = data.json();
