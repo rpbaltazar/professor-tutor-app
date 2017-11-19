@@ -16,7 +16,7 @@ export namespace Env {
     }
 
     const production = {
-      MOBILE_API: ''
+      MOBILE_API: 'https://professor-tutor.herokuapp.com'
     }
 
     function envSpecificVars(){
