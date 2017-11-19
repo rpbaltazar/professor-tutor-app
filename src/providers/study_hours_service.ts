@@ -106,4 +106,33 @@ export class StudyHoursService {
       });
     });
   }
+
+  createNewStudyHour(data): Promise<any> {
+    return new Promise( (resolve, reject) => {
+      this.apiKeyPromise.then(() => {
+        let mobileApi = Env.getEnvValue('MOBILE_API');
+
+        let headers = new Headers();
+        headers.append('Authorization', `Token ${this.api_key}`);
+
+        let params = {
+          study_hour: {
+            user_id: data["student_id"],
+            start_time: data["start_time"],
+            end_time: data["end_time"],
+            description: data["description"]
+          }
+        }
+
+        let opts:RequestOptionsArgs = { headers: headers };
+
+        this.http.post(`${mobileApi}v1/study_hours`, params, opts)
+            .subscribe((data) => {
+              resolve();
+          }, (error) => {
+            reject(error);
+        });
+      });
+    });
+  }
 }

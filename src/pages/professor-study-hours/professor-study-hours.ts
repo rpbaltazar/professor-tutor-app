@@ -44,6 +44,14 @@ export class ProfessorStudyHoursPage {
     });
   }
 
+  addNewSchedule() {
+    let params: any = { 
+      selectedStudent: this.selectedStudent,
+      date: this.beginningOfWeek
+    }
+    this.navCtrl.push(NewSchedulePage, params);
+  }
+
   showPrompt(title, message, successCallback, cancelCallback) {
     let prompt = this.alertCtrl.create({
       title: title,
