@@ -4,7 +4,7 @@ import * as _ from 'lodash';
 
 export class Day {
   dayOfWeek: number;
-  studyHours: Array<StudyHour>
+  studyHours: Array<StudyHour> = [];
 
   public getDayName(): string {
     return Week.getNameOfDay(this.dayOfWeek);

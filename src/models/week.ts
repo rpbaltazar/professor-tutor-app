@@ -1,4 +1,5 @@
 import * as _ from 'lodash';
+import moment, { Moment } from 'moment';
 
 import { Day } from './day';
 import { StudyHour } from './study_hour';
@@ -17,13 +18,13 @@ export class Week {
 
   private static getWeekdays(): any {
     return {
-      0: 'Domingo',
-      1: 'Segunda',
-      2: 'Terca',
-      3: 'Quarta',
-      4: 'Quinta',
-      5: 'Sexta',
-      6: 'Sabado',
+      0: 'Segunda',
+      1: 'Terca',
+      2: 'Quarta',
+      3: 'Quinta',
+      4: 'Sexta',
+      5: 'Sabado',
+      6: 'Domingo',
     }
   }
   
@@ -32,17 +33,14 @@ export class Week {
   }
 
   public static fromJSON(studyHoursJSON): Week {
+    moment.locale("pt")
+
     let week = new Week()
 
-    _.map(studyHoursJSON, (studyHours, dayOfWeek) => {
-      dayOfWeek = parseInt(dayOfWeek);
-
-      let hours = _.map(studyHours, (studyHourJSON) => {
-        return StudyHour.fromJSON(studyHourJSON)
-      });
-
-      // Set the study hours for the day of ther week
-      week.studyDays[dayOfWeek].studyHours = hours;
+    _.map(studyHoursJSON, (studyHourJSON) => {
+      let studyHour = StudyHour.fromJSON(studyHourJSON)
+      let dayOfWeek = studyHour.startTime.weekday()
+      week.studyDays[dayOfWeek].studyHours.push(studyHour);
     });
 
     return week;
