@@ -1,9 +1,12 @@
+import moment from 'moment';
+
 import { Component, ViewChild } from '@angular/core';
 import { Platform, MenuController, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
 import { StudentListPage } from '../pages/student-list/student-list';
+import { Env } from '../config/env';
 
 
 @Component({
@@ -33,7 +36,12 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.splashScreen.hide();
       this.statusBar.styleDefault();
+      this.setConfiguration();
     });
+  }
+
+  setConfiguration() {
+    moment.locale(Env.getEnvValue("LOCALE"));
   }
 
   openPage(page) {

@@ -4,7 +4,9 @@ export namespace Env {
       DATABASE_NAME: 'professor-tutor-app',
       DATABASE_LOCATION: 'default',
       APP_ENVIRONMENT: 'development',
-      DATETIME_FORMAT: "MMM D, YYYY, h:mm A"
+      DATETIME_FORMAT: "MMM D, YYYY, h:mm A",
+      TIMEZONE: "UTC",
+      LOCALE: "pt"
     }
 
     const development = {

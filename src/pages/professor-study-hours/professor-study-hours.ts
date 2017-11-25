@@ -1,15 +1,15 @@
+import * as _ from 'lodash';
+import { Moment } from 'moment/moment';
+
 import { Student } from '../../models/student';
 import { StudyHour } from '../../models/study_hour';
 import * as moment from 'moment/moment';
-import * as _ from 'lodash';
-import { Moment } from 'moment/moment';
 
 import { Week } from '../../models/week';
 import { StudyHoursService } from '../../providers/study_hours_service';
 import { Component } from '@angular/core';
 import { AlertController, NavController, ToastController, NavParams } from 'ionic-angular';
 import { NewSchedulePage } from '../new-schedule/new-schedule';
-import { UserService } from '../../providers/user_service';
 import { UpdateSchedulePage } from '../update-schedule/update-schedule';
 
 @Component({
@@ -29,8 +29,7 @@ export class ProfessorStudyHoursPage {
               public navParams: NavParams,
               private alertCtrl: AlertController,
               private toastCtrl: ToastController,
-              private studyHoursService: StudyHoursService,
-              private userService: UserService) {
+              private studyHoursService: StudyHoursService) {
       this.selectedStudent = this.navParams.get("selectedStudent")
   }
 
@@ -100,7 +99,7 @@ export class ProfessorStudyHoursPage {
   }
 
   showToast(message) {
-    let toast = this.toastCtrl.create({
+    this.toastCtrl.create({
       message: message,
       duration: 3000,
       position: 'bottom'

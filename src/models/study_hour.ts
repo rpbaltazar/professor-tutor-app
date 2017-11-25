@@ -1,4 +1,5 @@
 import * as moment from 'moment/moment';
+import * as momenttz from "moment-timezone"
 import * as _ from 'lodash';
 
 import { DateTime } from 'ionic-angular/umd';
@@ -15,11 +16,12 @@ export class StudyHour {
   description: string;
 
   public static fromJSON(json): StudyHour {
+    let timezone = Env.getEnvValue("TIMEZONE")
     let studyHour: StudyHour = new StudyHour()
     studyHour.id = Number(json["id"]);
     studyHour.user_id = Number(json["user_id"]);
-    studyHour.startTime = moment(json["start_time"]);
-    studyHour.endTime = moment(json["end_time"]);
+    studyHour.startTime = momenttz(json["start_time"]).tz(timezone)
+    studyHour.endTime = momenttz(json["end_time"]).tz(timezone);
     studyHour.startedAt = json["started_at"];
     studyHour.completedAt = json["completed_at"];
     studyHour.description = json["description"];

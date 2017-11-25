@@ -33,8 +33,6 @@ export class Week {
   }
 
   public static fromJSON(studyHoursJSON): Week {
-    moment.locale("pt")
-
     let week = new Week()
 
     _.map(studyHoursJSON, (studyHourJSON) => {
