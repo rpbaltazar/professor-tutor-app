@@ -5,6 +5,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Component } from "@angular/core";
 import { ToastController, NavController, NavParams } from "ionic-angular";
 import { StudyHoursService } from '../../providers/study_hours_service';
+import { Moment } from 'moment-timezone';
 
 @Component({
   selector: "new-schedule-page",
@@ -14,7 +15,7 @@ import { StudyHoursService } from '../../providers/study_hours_service';
 export class NewSchedulePage {
   newScheduleData: FormGroup;
   selectedStudent: any;
-  today: Date = new Date();
+  today: String = moment().format();
   weekEnd: string;
 
   constructor(public navCtrl: NavController,

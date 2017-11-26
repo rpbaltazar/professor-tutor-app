@@ -1,3 +1,4 @@
+import { StudentStudyHoursPage } from '../pages/student-study-hours/student-study-hours';
 import moment from 'moment';
 
 import { Component, ViewChild } from '@angular/core';
@@ -7,7 +8,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
 import { StudentListPage } from '../pages/student-list/student-list';
 import { Env } from '../config/env';
-
+import { Storage } from '@ionic/storage';
 
 @Component({
   templateUrl: 'app.html'
@@ -15,13 +16,12 @@ import { Env } from '../config/env';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LoginPage;
   pages: Array<{title: string, component: any}>;
-
   constructor(public platform: Platform, 
               public menu: MenuController, 
               private splashScreen: SplashScreen,
-              private statusBar: StatusBar) {
+              private statusBar: StatusBar,
+              private storage: Storage) {
     this.initializeApp();
 
     // set our app's pages
@@ -37,7 +37,21 @@ export class MyApp {
       this.splashScreen.hide();
       this.statusBar.styleDefault();
       this.setConfiguration();
+      this.checkExistingLogin();
     });
+  }
+
+  async checkExistingLogin() {
+    let apiKey = await this.storage.get("api_key")
+    let userType = await this.storage.get("user_type")
+
+    if (apiKey && userType) {
+      if(userType == "Professor") {
+        this.nav.push(StudentListPage);
+      } else {
+        this.nav.push(StudentStudyHoursPage);
+      }
+    }
   }
 
   setConfiguration() {

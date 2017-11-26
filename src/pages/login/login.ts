@@ -1,10 +1,12 @@
-import { StudentStudyHoursPage } from '../student-study-hours/student-study-hours';
 import { StudentListPage } from '../student-list/student-list';
 import { RegisterPage } from '../register/register';
 import { UserService } from '../../providers/user_service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Component } from '@angular/core';
 import { AlertController, LoadingController, NavController, NavParams } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+import { ProfessorStudyHoursPage } from '../professor-study-hours/professor-study-hours';
+import { StudentStudyHoursPage } from '../student-study-hours/student-study-hours';
 
 @Component({
   selector: 'login-page',
@@ -16,13 +18,13 @@ export class LoginPage {
   constructor(public navCtrl: NavController,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
-    private userService: UserService
+    private userService: UserService,
+    private storage: Storage
    ) {
     this.loginData = new FormGroup({ // TODO: Add validation
       email: new FormControl("ranhiru@gmail.com"),
       password: new FormControl("12345678")
    });
-
   }
 
   register() {

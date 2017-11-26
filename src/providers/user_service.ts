@@ -12,9 +12,14 @@ import { Env } from '../config/env';
 export class UserService {
   user_data: any;
   currentUserType: string;
+  apiKeyPromise: Promise<any>;
+  apiKey: String;
 
   constructor(public http: Http, private storage: Storage) {
     this.http = http;
+    this.apiKeyPromise = storage.get("api_key").then((api_key) => {
+      this.apiKey = api_key
+    });
   }
 
   signIn(email: string, password: string) {
@@ -74,25 +79,27 @@ export class UserService {
 
   getStudents(): Promise<Array<Student>> {
     return new Promise( (resolve, reject) => {
-      let mobileApi = Env.getEnvValue('MOBILE_API');
+      this.apiKeyPromise.then( () => {
+        let mobileApi = Env.getEnvValue('MOBILE_API');
 
-      let headers = new Headers();
-      headers.append('Authorization', `Token ${this.user_data["api_key"]}`);
-      let opts:RequestOptionsArgs = { headers: headers };
+        let headers = new Headers();
+        headers.append('Authorization', `Token ${this.apiKey}`);
+        let opts:RequestOptionsArgs = { headers: headers };
 
-      this.http.get(`${mobileApi}v1/users`, opts)
-        .subscribe(
-          data => {
-            let students: Array<Student> = []
-            students = _.map(data.json(), (student) => {
-               return Student.fromJSON(student);
-            });
+        this.http.get(`${mobileApi}v1/users`, opts)
+          .subscribe(
+            data => {
+              let students: Array<Student> = []
+              students = _.map(data.json(), (student) => {
+                return Student.fromJSON(student);
+              });
 
-            resolve(students);
-          },
-          error => {
-            reject(error);
-        });
+              resolve(students);
+            },
+            error => {
+              reject(error);
+          });
+      });
     });
   }
 }

@@ -47,7 +47,7 @@ export class ProfessorStudyHoursPage {
   addStudyHour() {
     let params: any = { 
       selectedStudent: this.selectedStudent,
-      date: this.beginningOfWeek
+      date: moment().add("1", "day")
     }
     this.navCtrl.push(NewSchedulePage, params);
   }
