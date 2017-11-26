@@ -41,10 +41,20 @@ export class LoginPage {
       } else {
         this.navCtrl.setRoot(StudentStudyHoursPage);
       }
-    }).catch( () => {
+    }).catch( (error) => {
+      let message = ""
+
+      if (error.status == 401) {
+        message = 'Incorrect username or password!'
+      } else if(error.status == 0) {
+        message = "No internet connection!"
+      } else {
+        message = "Server Error"
+      }
+
       const alert = this.alertCtrl.create({
         title: 'Error',
-        subTitle: 'Incorrect username or password!',
+        subTitle: message,
         buttons: ['Ok']
       });
       alert.present();
