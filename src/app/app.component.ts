@@ -1,3 +1,4 @@
+import { UserService } from '../providers/user_service';
 import { StudentStudyHoursPage } from '../pages/student-study-hours/student-study-hours';
 import moment from 'moment';
 
@@ -21,7 +22,8 @@ export class MyApp {
               public menu: MenuController, 
               private splashScreen: SplashScreen,
               private statusBar: StatusBar,
-              private storage: Storage) {
+              private storage: Storage,
+              private userService: UserService) {
     this.initializeApp();
 
     // set our app's pages
@@ -41,17 +43,28 @@ export class MyApp {
     });
   }
 
+  logout() {
+    this.userService.signout().then(() => {
+      this.nav.setRoot(LoginPage);
+      this.menu.close();
+    });
+  }
+
   async checkExistingLogin() {
     let apiKey = await this.storage.get("api_key")
     let userType = await this.storage.get("user_type")
 
     if (apiKey && userType) {
       if(userType == "Professor") {
-        this.nav.push(StudentListPage);
+        this.nav.setRoot(StudentListPage);
+        return;
       } else {
-        this.nav.push(StudentStudyHoursPage);
+        this.nav.setRoot(StudentStudyHoursPage);
+        return;
       }
     }
+
+    this.nav.setRoot(LoginPage);
   }
 
   setConfiguration() {

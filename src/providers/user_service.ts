@@ -47,6 +47,14 @@ export class UserService {
     });
   }
 
+  signout(): Promise<any> {
+    return Promise.all([
+      this.storage.remove("current_user"),
+      this.storage.remove("user_type"),
+      this.storage.remove("api_keu")
+    ])
+  }
+
   isProfessor() {
     return this.currentUserType == "Professor";
   }

@@ -37,9 +37,9 @@ export class LoginPage {
     this.userService.signIn(emailAddress, password).then(data => {
 
       if(this.userService.isProfessor()) {
-        this.navCtrl.push(StudentListPage);
+        this.navCtrl.setRoot(StudentListPage);
       } else {
-        this.navCtrl.push(StudentStudyHoursPage);
+        this.navCtrl.setRoot(StudentStudyHoursPage);
       }
     }).catch( () => {
       const alert = this.alertCtrl.create({
