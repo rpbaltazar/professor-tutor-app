@@ -17,9 +17,10 @@ import { Storage } from '@ionic/storage';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  pages: Array<{title: string, component: any}>;
-  constructor(public platform: Platform, 
-              public menu: MenuController, 
+  pages: Array<{title: string, component: any, userRole: string}>;
+  userType: string;
+  constructor(public platform: Platform,
+              public menu: MenuController,
               private splashScreen: SplashScreen,
               private statusBar: StatusBar,
               private storage: Storage,
@@ -28,7 +29,7 @@ export class MyApp {
 
     // set our app's pages
     this.pages = [
-      { title: 'Os Meus Alunos', component: StudentListPage }
+      { title: 'Os Meus Alunos', component: StudentListPage, userRole: 'Professor' }
     ];
   }
 
@@ -52,10 +53,10 @@ export class MyApp {
 
   async checkExistingLogin() {
     let apiKey = await this.storage.get("api_key")
-    let userType = await this.storage.get("user_type")
+    this.userType = await this.storage.get("user_type")
 
-    if (apiKey && userType) {
-      if(userType == "Professor") {
+    if (apiKey && this.userType) {
+      if(this.userType == "Professor") {
         this.nav.setRoot(StudentListPage);
         return;
       } else {

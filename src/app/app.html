@@ -7,9 +7,11 @@
 
   <ion-content>
     <ion-list>
-      <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
-      </button>
+      <ng-container *ngFor="let p of pages">
+        <button ion-item *ngIf="p.userRole == userType" (click)="openPage(p)">
+          {{p.title}}
+        </button>
+      </ng-container>
       <button ion-item (click)="logout()">
         Logout
       </button>
