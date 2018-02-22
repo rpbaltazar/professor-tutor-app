@@ -49,7 +49,7 @@ export class RegisterPage {
           buttons: [{
             text: 'Ok',
             handler: () => {
-              this.navCtrl.push(LoginPage);
+              this.navCtrl.popToRoot();
             }
           }]
         });

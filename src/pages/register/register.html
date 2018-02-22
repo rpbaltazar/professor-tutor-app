@@ -1,28 +1,37 @@
 <ion-header>
-    <ion-navbar>
-        <ion-title>
-            Registar
-        </ion-title>
-    </ion-navbar>
+  <ion-navbar color="dark">
+    <ion-title>Registar</ion-title>
+  </ion-navbar>
 </ion-header>
 
-<ion-content padding id="register-page">
+<ion-content padding class="login-content" id="register-page">
+  <div class="form-wrapper">
     <form id="registration-form" [formGroup]="registrationData">
-        <ion-item>
-            <ion-input formControlName="first_name" type="text" placeholder="Primeiro Nome"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-input formControlName="last_name" type="text" placeholder="Último Nome"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-input formControlName="email" type="email" placeholder="Email"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-input formControlName="password" type="password" placeholder="Password"></ion-input>
-        </ion-item>
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+            <ion-item>
+              <ion-input formControlName="first_name" type="text" placeholder="Primeiro Nome"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input formControlName="last_name" type="text" placeholder="Último Nome"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input formControlName="email" type="email" placeholder="Email"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input formControlName="password" type="password" placeholder="Password"></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="signup-col">
+          <button id="register-button" (click)="register()" ion-button color="default" block>
+            Registar
+          </button>
+        </ion-col>
+      </ion-row>
     </form>
-    <div class="spacer" id="page-spacer"></div>
-    <button id="register-button" (click)="register()" ion-button color="default" block>
-        Registar
-    </button>
+  </div>
 </ion-content>
