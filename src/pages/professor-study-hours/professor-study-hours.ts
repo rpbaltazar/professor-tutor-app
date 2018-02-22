@@ -45,7 +45,7 @@ export class ProfessorStudyHoursPage {
   }
 
   addStudyHour() {
-    let params: any = { 
+    let params: any = {
       selectedStudent: this.selectedStudent,
       date: moment().add("1", "day")
     }
@@ -53,9 +53,9 @@ export class ProfessorStudyHoursPage {
   }
 
   delete(studyHour: StudyHour) {
-    let message = `Do you want to delete ${studyHour.description} 
-                   for ${this.selectedStudent.fullName()}`
-    this.showPrompt("Delete ?", message, this.deleteStudyHour.bind(this), null, studyHour);
+    let message = `Apagar a tarefa: ${studyHour.description}
+                   do(a) ${this.selectedStudent.fullName()}`
+    this.showPrompt("Apagar?", message, this.deleteStudyHour.bind(this), null, studyHour);
   }
 
   deleteStudyHour(studyHour: StudyHour) {
@@ -66,7 +66,7 @@ export class ProfessorStudyHoursPage {
   }
 
   edit(studyHour) {
-    let params: any = { 
+    let params: any = {
       studyHour: studyHour
     }
     this.navCtrl.push(UpdateSchedulePage, params);

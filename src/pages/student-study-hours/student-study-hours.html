@@ -3,7 +3,7 @@
     <button ion-button menuToggle *ngIf="!selectedStudent">
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title *ngIf="selectedStudent">Study Hours for {{selectedStudent.fullName()}}</ion-title>
+    <ion-title *ngIf="selectedStudent">Horas de estudo do(a) {{selectedStudent.fullName()}}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -20,21 +20,21 @@
             <ion-card-header>
               {{studyHour.description}}
               <ion-badge item-end class="unstarted-label" *ngIf="!studyHour.isStarted()">
-                Unstarted
+                Por Começar
               </ion-badge>
 
               <ion-badge item-end color="secondary" class="started-label" *ngIf="studyHour.isStarted() && !studyHour.isComplete()">
-                Started
+                Começada
               </ion-badge>
 
               <ion-badge item-end color="secondary" class="started-label" *ngIf="studyHour.isComplete()">
-                Completed
+                Terminada
               </ion-badge>
             </ion-card-header>
 
             <ion-card-content>
               <h3>{{studyHour.formattedDateTimeInfo()}}</h3>
-              <h5>Duration: {{studyHour.durationInMinutes()}} minutes</h5>
+              <h5>Duração: {{studyHour.durationInMinutes()}} minutos</h5>
             </ion-card-content>
 
             <ion-row no-padding>
@@ -43,7 +43,7 @@
                 <ion-col >
                   <button ion-button clear small color="default" icon-start (click)="markAsStarted(studyHour)">
                     <ion-icon name='play'></ion-icon>
-                    Start
+                    Começar
                   </button>
                 </ion-col>
               </span>
@@ -52,7 +52,7 @@
                 <ion-col text-center >
                   <button ion-button clear small color="default" icon-start (click)="markStudyHourAsCompleted(studyHour)">
                     <ion-icon name='checkmark-circle'></ion-icon>
-                    Complete
+                    Terminar
                   </button>
                 </ion-col>
               </span>
