@@ -12,14 +12,10 @@ import { Env } from '../config/env';
 export class UserService {
   user_data: any;
   currentUserType: string;
-  apiKeyPromise: Promise<any>;
-  apiKey: String;
 
   constructor(public http: Http, private storage: Storage) {
     this.http = http;
-    this.apiKeyPromise = storage.get("api_key").then((api_key) => {
-      this.apiKey = api_key
-    });
+    this.storage = storage;
   }
 
   signIn(email: string, password: string) {
@@ -51,7 +47,7 @@ export class UserService {
     return Promise.all([
       this.storage.remove("current_user"),
       this.storage.remove("user_type"),
-      this.storage.remove("api_keu")
+      this.storage.remove("api_key")
     ])
   }
 
@@ -87,11 +83,11 @@ export class UserService {
 
   getStudents(): Promise<Array<Student>> {
     return new Promise( (resolve, reject) => {
-      this.apiKeyPromise.then( () => {
+      this.storage.get("api_key").then((apiKey) => {
         let mobileApi = Env.getEnvValue('MOBILE_API');
 
         let headers = new Headers();
-        headers.append('Authorization', `Token ${this.apiKey}`);
+        headers.append('Authorization', `Token ${apiKey}`);
         let opts:RequestOptionsArgs = { headers: headers };
 
         this.http.get(`${mobileApi}v1/users`, opts)

@@ -1,7 +1,7 @@
 import { Student } from '../../models/student';
 import { UserService } from '../../providers/user_service';
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, MenuController } from 'ionic-angular';
 import { ProfessorStudyHoursPage } from '../professor-study-hours/professor-study-hours';
 
 @Component({
@@ -11,11 +11,14 @@ import { ProfessorStudyHoursPage } from '../professor-study-hours/professor-stud
 export class StudentListPage {
   students: Array<Student>;
 
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public userService: UserService) {
+              public userService: UserService,
+              public menu: MenuController) {
     userService.getStudents().then((students) => {
       this.students = students;
+      this.menu.enable(true, 'professor')
+      this.menu.enable(false, 'student')
     });
   }
 

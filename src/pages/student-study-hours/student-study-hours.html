@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <button menuToggle *ngIf="!selectedStudent">
+    <button ion-button menuToggle *ngIf="!selectedStudent">
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title *ngIf="selectedStudent">Study Hours for {{selectedStudent.fullName()}}</ion-title>
@@ -31,7 +31,7 @@
                 Completed
               </ion-badge>
             </ion-card-header>
-          
+
             <ion-card-content>
               <h3>{{studyHour.formattedDateTimeInfo()}}</h3>
               <h5>Duration: {{studyHour.durationInMinutes()}} minutes</h5>

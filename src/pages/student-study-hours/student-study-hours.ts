@@ -6,7 +6,7 @@ import { Moment } from 'moment/moment';
 import { Week } from '../../models/week';
 import { StudyHoursService } from '../../providers/study_hours_service';
 import { Component } from '@angular/core';
-import { AlertController, NavController, ToastController, NavParams } from 'ionic-angular';
+import { AlertController, NavController, ToastController, NavParams, MenuController } from 'ionic-angular';
 import { NewSchedulePage } from '../new-schedule/new-schedule';
 import { UserService } from '../../providers/user_service';
 
@@ -26,7 +26,11 @@ export class StudentStudyHoursPage {
               private alertCtrl: AlertController,
               private toastCtrl: ToastController,
               private studyHoursService: StudyHoursService,
-              private userService: UserService) {
+              private userService: UserService,
+              public menu: MenuController) {
+
+    this.menu.enable(true, 'student')
+    this.menu.enable(false, 'professor')
   }
 
   ionViewDidEnter(){
@@ -105,7 +109,7 @@ export class StudentStudyHoursPage {
     }.bind(this);
 
     this.showPrompt(
-      title, 
+      title,
       prompt,
       successCallback,
       null

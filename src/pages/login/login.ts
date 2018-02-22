@@ -22,8 +22,8 @@ export class LoginPage {
     private storage: Storage
    ) {
     this.loginData = new FormGroup({ // TODO: Add validation
-      email: new FormControl("ranhiru@gmail.com"),
-      password: new FormControl("12345678")
+      email: new FormControl(),
+      password: new FormControl()
    });
   }
 

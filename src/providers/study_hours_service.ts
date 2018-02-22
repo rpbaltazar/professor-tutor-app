@@ -14,18 +14,16 @@ export class StudyHoursService {
   api_key: any;
 
   constructor(public http: Http, private storage: Storage) {
-    this.apiKeyPromise = storage.get("api_key").then((api_key) => {
-      this.api_key = api_key
-    });
+    this.storage = storage;
   }
 
   getStudyHoursForWeek(date = moment()): Promise<Week> {
     return new Promise( (resolve, reject) => {
-      this.apiKeyPromise.then(() => {
+      this.storage.get("api_key").then((apiKey) => {
         let mobileApi = Env.getEnvValue('MOBILE_API');
 
         let headers = new Headers();
-        headers.append('Authorization', `Token ${this.api_key}`);
+        headers.append('Authorization', `Token ${apiKey}`);
 
         let params = {
           date: date.format()
@@ -45,11 +43,11 @@ export class StudyHoursService {
 
   getStudyHoursForStudent(studentId: number, date = moment()) : Promise<Week> {
     return new Promise( (resolve, reject) => {
-      this.apiKeyPromise.then(() => {
+      this.storage.get("api_key").then((apiKey) => {
         let mobileApi = Env.getEnvValue('MOBILE_API');
 
         let headers = new Headers();
-        headers.append('Authorization', `Token ${this.api_key}`);
+        headers.append('Authorization', `Token ${apiKey}`);
 
         let params = {
           date: date.format()
@@ -69,11 +67,11 @@ export class StudyHoursService {
 
   markAsStarted(studyHourId) {
     return new Promise( (resolve, reject) => {
-      this.apiKeyPromise.then(() => {
+      this.storage.get("api_key").then((apiKey) => {
         let mobileApi = Env.getEnvValue('MOBILE_API');
 
         let headers = new Headers();
-        headers.append('Authorization', `Token ${this.api_key}`);
+        headers.append('Authorization', `Token ${apiKey}`);
 
         let opts:RequestOptionsArgs = { headers: headers };
 
@@ -89,11 +87,11 @@ export class StudyHoursService {
 
   markAsCompleted(studyHourId) {
     return new Promise( (resolve, reject) => {
-      this.apiKeyPromise.then(() => {
+      this.storage.get("api_key").then((apiKey) => {
         let mobileApi = Env.getEnvValue('MOBILE_API');
 
         let headers = new Headers();
-        headers.append('Authorization', `Token ${this.api_key}`);
+        headers.append('Authorization', `Token ${apiKey}`);
 
         let opts:RequestOptionsArgs = { headers: headers };
 
@@ -109,11 +107,11 @@ export class StudyHoursService {
 
   createNewStudyHour(data): Promise<any> {
     return new Promise( (resolve, reject) => {
-      this.apiKeyPromise.then(() => {
+      this.storage.get("api_key").then((apiKey) => {
         let mobileApi = Env.getEnvValue('MOBILE_API');
 
         let headers = new Headers();
-        headers.append('Authorization', `Token ${this.api_key}`);
+        headers.append('Authorization', `Token ${apiKey}`);
 
         let params = {
           study_hour: {
