@@ -1,16 +1,16 @@
 export namespace Env {
     const global = {
-      APP_VERSION: '0.3.1 Alpha',
+      APP_VERSION: '0.3.2 Alpha',
       DATABASE_NAME: 'professor-tutor-app',
       DATABASE_LOCATION: 'default',
-      APP_ENVIRONMENT: 'production',
+      APP_ENVIRONMENT: 'development',
       DATETIME_FORMAT: "MMM D, YYYY, h:mm A",
       TIMEZONE: "UTC",
       LOCALE: "pt"
     }
 
     const development = {
-      MOBILE_API: 'http://127.0.0.1:3000/'
+      MOBILE_API: 'http://192.168.1.224:4000/'
     }
 
     const staging = {

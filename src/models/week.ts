@@ -19,15 +19,15 @@ export class Week {
   private static getWeekdays(): any {
     return {
       0: 'Segunda',
-      1: 'Terca',
+      1: 'Terça',
       2: 'Quarta',
       3: 'Quinta',
       4: 'Sexta',
-      5: 'Sabado',
+      5: 'Sábado',
       6: 'Domingo',
     }
   }
-  
+
   public static getNameOfDay(index): string {
     return Week.getWeekdays()[index];
   }

@@ -45,11 +45,11 @@ export class LoginPage {
       let message = ""
 
       if (error.status == 401) {
-        message = 'Incorrect username or password!'
+        message = 'Email ou password inválidos.'
       } else if(error.status == 0) {
-        message = "No internet connection!"
+        message = "Sem acesso à internet."
       } else {
-        message = "Server Error"
+        message = "Erro do servidor."
       }
 
       const alert = this.alertCtrl.create({
