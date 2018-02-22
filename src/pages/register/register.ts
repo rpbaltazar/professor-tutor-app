@@ -5,7 +5,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Component } from '@angular/core';
 import { LoadingController,
          NavController,
-         NavParams 
+         NavParams
        } from 'ionic-angular';
 
 @Component({
@@ -30,7 +30,7 @@ export class RegisterPage {
 
   register() {
     const loadingMessage = this.loadingCtrl.create({
-      content: 'Creating user...'
+      content: 'A registar novo utilizador...'
     });
 
     var params = {
@@ -44,8 +44,8 @@ export class RegisterPage {
       loadingMessage.dismiss();
 
         const alert = this.alertCtrl.create({
-          title: 'Success!',
-          subTitle: 'User was created successfully. Please login',
+          title: 'Sucesso!',
+          subTitle: 'Novo utilizador registado com successo.',
           buttons: [{
             text: 'Ok',
             handler: () => {
@@ -62,6 +62,4 @@ export class RegisterPage {
 
   presentToast() {
   }
-
-
 }

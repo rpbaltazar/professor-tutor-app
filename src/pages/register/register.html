@@ -1,7 +1,7 @@
 <ion-header>
     <ion-navbar>
         <ion-title>
-            Register
+            Registar
         </ion-title>
     </ion-navbar>
 </ion-header>
@@ -9,13 +9,13 @@
 <ion-content padding id="register-page">
     <form id="registration-form" [formGroup]="registrationData">
         <ion-item>
-            <ion-input formControlName="first_name" type="text" placeholder="First Name"></ion-input>
+            <ion-input formControlName="first_name" type="text" placeholder="Primeiro Nome"></ion-input>
         </ion-item>
         <ion-item>
-            <ion-input formControlName="last_name" type="text" placeholder="Last Name"></ion-input>
+            <ion-input formControlName="last_name" type="text" placeholder="Último Nome"></ion-input>
         </ion-item>
         <ion-item>
-            <ion-input formControlName="email" type="email" placeholder="Email Address"></ion-input>
+            <ion-input formControlName="email" type="email" placeholder="Email"></ion-input>
         </ion-item>
         <ion-item>
             <ion-input formControlName="password" type="password" placeholder="Password"></ion-input>
@@ -23,6 +23,6 @@
     </form>
     <div class="spacer" id="page-spacer"></div>
     <button id="register-button" (click)="register()" ion-button color="default" block>
-        Register
+        Registar
     </button>
 </ion-content>

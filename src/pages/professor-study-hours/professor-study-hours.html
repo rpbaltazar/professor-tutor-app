@@ -3,7 +3,7 @@
     <button menuToggle *ngIf="!selectedStudent">
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title *ngIf="selectedStudent">Study Hours for {{selectedStudent.fullName()}}</ion-title>
+    <ion-title *ngIf="selectedStudent">Horas de estudo do(a) {{selectedStudent.fullName()}}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -20,21 +20,21 @@
             <ion-card-header>
               {{studyHour.description}}
               <ion-badge item-end class="unstarted-label" *ngIf="!studyHour.isStarted()">
-                Unstarted
+                Por começar
               </ion-badge>
 
               <ion-badge item-end color="secondary" class="started-label" *ngIf="studyHour.isStarted() && !studyHour.isComplete()">
-                Started
+                Começada
               </ion-badge>
 
               <ion-badge item-end color="secondary" class="started-label" *ngIf="studyHour.isComplete()">
-                Completed
+                Terminada
               </ion-badge>
             </ion-card-header>
-          
+
             <ion-card-content>
               <h3>{{studyHour.formattedDateTimeInfo()}}</h3>
-              <h5>Duration: {{studyHour.durationInMinutes()}} minutes</h5>
+              <h5>Duração: {{studyHour.durationInMinutes()}} minutos</h5>
             </ion-card-content>
 
             <ion-row no-padding>
@@ -42,13 +42,13 @@
                 <ion-col >
                   <button ion-button clear small color="default" icon-start (click)="edit(studyHour)">
                     <ion-icon name='cog'></ion-icon>
-                    Edit
+                    Editar
                   </button>
                 </ion-col>
                 <ion-col >
                   <button ion-button clear small color="danger" icon-start (click)="delete(studyHour)">
                     <ion-icon name='trash'></ion-icon>
-                    Delete
+                    Apagar
                   </button>
                 </ion-col>
               </span>

@@ -50,7 +50,7 @@ export class StudentStudyHoursPage {
       message: message,
       buttons: [
         {
-          text: 'Yes',
+          text: 'Sim',
           handler: (data) => {
             if(_.isFunction(successCallback)) {
               successCallback(data);
@@ -58,7 +58,7 @@ export class StudentStudyHoursPage {
           }
         },
         {
-          text: 'No',
+          text: 'Não',
           handler: (data) => {
             if(_.isFunction(cancelCallback)) {
               cancelCallback(data);
@@ -79,13 +79,13 @@ export class StudentStudyHoursPage {
   }
 
   markAsStarted(studyHour: StudyHour) {
-    let title = "Mark As Started ?";
-    let prompt = `Are you sure you want to mark ${studyHour.description} as started ?`
+    let title = "Marcar como começada?";
+    let prompt = `Tens a certeza que queres marcar a tarefa: ${studyHour.description} como começada?`
 
     let successCallback = function() {
       this.studyHoursService.markAsStarted(studyHour.id).then(() => {
         this.loadStudentWorkload(this.beginningOfWeek);
-        this.showToast(`${studyHour.description} marked as started!`);
+        this.showToast(`${studyHour.description} começada!`);
       });
     }.bind(this)
 
@@ -98,13 +98,13 @@ export class StudentStudyHoursPage {
   }
 
   markStudyHourAsCompleted(studyHour) {
-    let title = "Mark As Completed ?";
-    let prompt = `Are you sure you want to mark ${studyHour.description} as completed ?`
+    let title = "Marcar como terminada?";
+    let prompt = `Tens a certeza que queres marcar a tarefa: ${studyHour.description} como terminada?`
 
     let successCallback = function() {
       this.studyHoursService.markAsCompleted(studyHour.id).then(() => {
         this.loadStudentWorkload(this.beginningOfWeek);
-        this.showToast(`${studyHour.description} marked as completed!`);
+        this.showToast(`${studyHour.description} terminada!`);
       });
     }.bind(this);
 
