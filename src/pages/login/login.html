@@ -1,0 +1,25 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title>
+        Login
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+  <ion-content padding id="login-page">
+    <form id="login-form" [formGroup]="loginData">
+      <ion-item>
+        <ion-input formControlName="email" type="email" placeholder="Email Address"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input formControlName="password" type="password" placeholder="Password"></ion-input>
+      </ion-item>
+    </form>
+    <div class="spacer" id="page-spacer"></div>
+    <button id="login-button" (click)="login()" ion-button color="positive" block>
+      Login
+    </button>
+    <div class="spacer" id="page-spacer"></div>
+    <button id="register-button" (click)="register()" ion-button color="secondary" block>
+      Register
+    </button>
+  </ion-content>

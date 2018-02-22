@@ -1,8 +1,15 @@
+import { UserService } from '../providers/user_service';
+import { StudentStudyHoursPage } from '../pages/student-study-hours/student-study-hours';
+import moment from 'moment';
+
 import { Component, ViewChild } from '@angular/core';
 import { Platform, MenuController, Nav } from 'ionic-angular';
-import { StatusBar, Splashscreen } from 'ionic-native';
-import { ListPage } from '../pages/list/list';
-
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { LoginPage } from '../pages/login/login';
+import { StudentListPage } from '../pages/student-list/student-list';
+import { Env } from '../config/env';
+import { Storage } from '@ionic/storage';
 
 @Component({
   templateUrl: 'app.html'
@@ -10,16 +17,19 @@ import { ListPage } from '../pages/list/list';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  // make ListPage the root (or first) page
-  rootPage: any = ListPage;
-  pages: Array<{title: string, component: any}>;
-
-  constructor(public platform: Platform, public menu: MenuController) {
+  pages: Array<{title: string, component: any, userRole: string}>;
+  userType: string;
+  constructor(public platform: Platform,
+              public menu: MenuController,
+              private splashScreen: SplashScreen,
+              private statusBar: StatusBar,
+              private storage: Storage,
+              private userService: UserService) {
     this.initializeApp();
 
     // set our app's pages
     this.pages = [
-      { title: 'Os Meus Alunos', component: ListPage }
+      { title: 'Os Meus Alunos', component: StudentListPage, userRole: 'Professor' }
     ];
   }
 
@@ -27,9 +37,39 @@ export class MyApp {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      StatusBar.styleDefault();
-      Splashscreen.hide();
+      this.splashScreen.hide();
+      this.statusBar.styleDefault();
+      this.setConfiguration();
+      this.checkExistingLogin();
     });
+  }
+
+  logout() {
+    this.userService.signout().then(() => {
+      this.nav.setRoot(LoginPage);
+      this.menu.close();
+    });
+  }
+
+  async checkExistingLogin() {
+    let apiKey = await this.storage.get("api_key")
+    this.userType = await this.storage.get("user_type")
+
+    if (apiKey && this.userType) {
+      if(this.userType == "Professor") {
+        this.nav.setRoot(StudentListPage);
+        return;
+      } else {
+        this.nav.setRoot(StudentStudyHoursPage);
+        return;
+      }
+    }
+
+    this.nav.setRoot(LoginPage);
+  }
+
+  setConfiguration() {
+    moment.locale(Env.getEnvValue("LOCALE"));
   }
 
   openPage(page) {

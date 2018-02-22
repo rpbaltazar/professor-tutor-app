@@ -1,4 +1,4 @@
-item-details-page {
+professor-study-hours-page {
 
   div.selection {
     font-size: 22px;
@@ -12,6 +12,10 @@ item-details-page {
   .footer-bar-custom .item-right {
     position: absolute;
     width: 30px
+  }
+
+  .unstarted-label, .started-label {
+    float: right;
   }
 
   .footer-bar-custom .item-left { left: 10px }

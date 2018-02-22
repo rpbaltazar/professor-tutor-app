@@ -1,4 +1,4 @@
-<ion-menu [content]="content">
+<ion-menu id="professor" [content]="content">
   <ion-header>
     <ion-toolbar>
       <ion-title>Menu</ion-title>
@@ -8,11 +8,32 @@
   <ion-content>
     <ion-list>
       <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
-	{{p.title}}
+        {{p.title}}
+      </button>
+      <button ion-item (click)="logout()">
+        Logout
       </button>
     </ion-list>
   </ion-content>
-
 </ion-menu>
 
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<ion-menu id="student" [content]="content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        {{p.title}}
+      </button>
+      <button ion-item (click)="logout()">
+        Logout
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav #myNav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

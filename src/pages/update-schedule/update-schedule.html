@@ -9,19 +9,17 @@
 
 <ion-content>
 
-  <form id="new-schedule-form" [formGroup]="newScheduleData">
+  <form id="new-schedule-form" [formGroup]="updateScheduleData">
     <ion-list>
       <ion-item>
         <ion-label stacked>Hora de Comeco</ion-label>
         <ion-datetime displayFormat="DD-MMM-YYYY HH:mm"
-          formControlName="startDate"
-          min="{{this.today}}">
+          formControlName="startDate">
         </ion-datetime>
       </ion-item>
       <ion-item>
         <ion-label stacked>Hora de Fim</ion-label>
         <ion-datetime displayFormat="DD-MMM-YYYY HH:mm"
-          min="{{this.newScheduleData.get('startDate').value}}"
           formControlName="endDate">
         </ion-datetime>
       </ion-item>
@@ -32,7 +30,7 @@
     </ion-list>
 
   <div padding>
-    <button ion-button color="primary" block (click)="saveStudyHour()">Guardar</button>
+    <button ion-button color="primary" block (click)="updateStudyHour()">Update</button>
   </div>
 
   </form>
