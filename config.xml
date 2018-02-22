@@ -47,7 +47,7 @@
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
     <icon src="resources/ios/icon/icon-small@3x.png" />
-    <plugin name="cordova-sqlite-storage" spec="^2.0.4" />
-    <engine name="android" spec="~6.3.0" />
     <allow-navigation href="http://192.168.1.224:8100" />
+    <engine name="android" spec="6.3.0" />
+    <plugin name="cordova-sqlite-storage" spec="^2.0.4" />
 </widget>

@@ -1,9 +1,9 @@
 export namespace Env {
     const global = {
-      APP_VERSION: '0.2 Alpha',
+      APP_VERSION: '0.3.1 Alpha',
       DATABASE_NAME: 'professor-tutor-app',
       DATABASE_LOCATION: 'default',
-      APP_ENVIRONMENT: 'development',
+      APP_ENVIRONMENT: 'production',
       DATETIME_FORMAT: "MMM D, YYYY, h:mm A",
       TIMEZONE: "UTC",
       LOCALE: "pt"
