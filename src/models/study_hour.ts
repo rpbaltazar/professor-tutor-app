@@ -16,12 +16,11 @@ export class StudyHour {
   description: string;
 
   public static fromJSON(json): StudyHour {
-    let timezone = Env.getEnvValue("TIMEZONE")
     let studyHour: StudyHour = new StudyHour()
     studyHour.id = Number(json["id"]);
     studyHour.user_id = Number(json["user_id"]);
-    studyHour.startTime = momenttz(json["start_time"]).tz(timezone)
-    studyHour.endTime = momenttz(json["end_time"]).tz(timezone);
+    studyHour.startTime = moment(json["start_time"])
+    studyHour.endTime = moment(json["end_time"])
     studyHour.startedAt = json["started_at"];
     studyHour.completedAt = json["completed_at"];
     studyHour.description = json["description"];
@@ -47,7 +46,7 @@ export class StudyHour {
   formattedStartTime(): string {
     return this.startTime.format(Env.getEnvValue("DATETIME_FORMAT"));
   }
-  
+
   formattedEndTime(): string {
     return this.endTime.format(Env.getEnvValue("DATETIME_FORMAT"))
   }

@@ -23,7 +23,7 @@ export class NewSchedulePage {
               public toastCtrl: ToastController,
               public studyHourService: StudyHoursService) {
     this.selectedStudent = navParams.get('selectedStudent');
-    
+
     let startDate = navParams.get("date").format()
     let endDate = navParams.get("date").clone().add(1, "h").format()
 
@@ -37,8 +37,8 @@ export class NewSchedulePage {
   saveStudyHour(){
     let data = {
       student_id: this.selectedStudent.id,
-      start_time: moment(this.newScheduleData.get("startDate").value).format("YYYY-MM-DD HH:mm:ss"),
-      end_time: moment(this.newScheduleData.get("endDate").value).format("YYYY-MM-DD HH:mm:ss"),
+      start_time: this.newScheduleData.get("startDate").value,
+      end_time: this.newScheduleData.get("endDate").value,
       description: this.newScheduleData.get("assignment").value,
     }
 

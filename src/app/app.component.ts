@@ -39,7 +39,6 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.splashScreen.hide();
       this.statusBar.styleDefault();
-      this.setConfiguration();
       this.checkExistingLogin();
     });
   }
@@ -66,10 +65,6 @@ export class MyApp {
     }
 
     this.nav.setRoot(LoginPage);
-  }
-
-  setConfiguration() {
-    moment.locale(Env.getEnvValue("LOCALE"));
   }
 
   openPage(page) {
