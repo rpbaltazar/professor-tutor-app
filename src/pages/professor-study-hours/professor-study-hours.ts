@@ -78,7 +78,7 @@ export class ProfessorStudyHoursPage {
       message: message,
       buttons: [
         {
-          text: 'Yes',
+          text: 'Sim',
           handler: () => {
             if(_.isFunction(successCallback)) {
               successCallback(extraData);
@@ -86,7 +86,7 @@ export class ProfessorStudyHoursPage {
           }
         },
         {
-          text: 'No',
+          text: 'Não',
           handler: () => {
             if(_.isFunction(cancelCallback)) {
               cancelCallback(extraData);
