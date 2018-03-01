@@ -20,11 +20,11 @@ export class UpdateSchedulePage {
               public navParams: NavParams,
               public toastCtrl: ToastController,
               public studyHourService: StudyHoursService) {
-    
+
     this.currentStudyHour = navParams.get("studyHour");
 
-    let startDate = this.currentStudyHour.startTime.toISOString();
-    let endDate = this.currentStudyHour.endTime.toISOString();
+    let startDate = this.currentStudyHour.startTime.format();
+    let endDate = this.currentStudyHour.endTime.format();
     let description = this.currentStudyHour.description;
 
     this.updateScheduleData = new FormGroup({
