@@ -10,6 +10,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
+import { AdminPage } from '../pages/administrator/admin';
 import { StudentStudyHoursPage } from '../pages/student-study-hours/student-study-hours';
 import { StudentListPage } from '../pages/student-list/student-list';
 import { NewSchedulePage } from '../pages/new-schedule/new-schedule';
@@ -27,7 +28,8 @@ import { UpdateSchedulePage } from '../pages/update-schedule/update-schedule';
     ProfessorStudyHoursPage,
     StudentListPage,
     NewSchedulePage,
-    UpdateSchedulePage
+    UpdateSchedulePage,
+    AdminPage
   ],
   imports: [
     BrowserModule,
@@ -44,14 +46,15 @@ import { UpdateSchedulePage } from '../pages/update-schedule/update-schedule';
     ProfessorStudyHoursPage,
     StudentListPage,
     NewSchedulePage,
-    UpdateSchedulePage
+    UpdateSchedulePage,
+    AdminPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     UserService,
     StudyHoursService,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
 export class AppModule {}

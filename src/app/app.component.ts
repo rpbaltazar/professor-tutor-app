@@ -7,6 +7,7 @@ import { Platform, MenuController, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
+import { AdminPage } from '../pages/administrator/admin';
 import { StudentListPage } from '../pages/student-list/student-list';
 import { Env } from '../config/env';
 import { Storage } from '@ionic/storage';
@@ -29,7 +30,8 @@ export class MyApp {
 
     // set our app's pages
     this.pages = [
-      { title: 'Os Meus Alunos', component: StudentListPage, userRole: 'Professor' }
+      { title: 'Os Meus Alunos', component: StudentListPage, userRole: 'Professor' },
+      { title: 'Administrador', component: AdminPage, userRole: 'Professor' }
     ];
   }
 
