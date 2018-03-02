@@ -18,13 +18,13 @@ export class Week {
 
   private static getWeekdays(): any {
     return {
-      0: 'Segunda',
-      1: 'Terça',
-      2: 'Quarta',
-      3: 'Quinta',
-      4: 'Sexta',
-      5: 'Sábado',
-      6: 'Domingo',
+      "1": 'Segunda',
+      "2": 'Terça',
+      "3": 'Quarta',
+      "4": 'Quinta',
+      "5": 'Sexta',
+      "6": 'Sábado',
+      "7": 'Domingo'
     }
   }
 
@@ -37,7 +37,7 @@ export class Week {
 
     _.map(studyHoursJSON, (studyHourJSON) => {
       let studyHour = StudyHour.fromJSON(studyHourJSON)
-      let dayOfWeek = studyHour.startTime.weekday()
+      let dayOfWeek = (studyHour.startTime.isoWeekday()+6)%7;
       week.studyDays[dayOfWeek].studyHours.push(studyHour);
     });
 
